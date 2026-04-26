@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOMOS Specialty Coffee</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --dark: #111111;
+  --card: #181818;
+  --border: #252525;
+  --white: #ffffff;
+  --gold: #c8a96e;
+  --gray: #666;
+  --lgray: #999;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 56px;display:flex;align-items:center;justify-content:space-between;transition:.3s}
+nav.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(20px);padding:14px 56px;border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:1px}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;transition:.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--white)!important;color:var(--black)!important;padding:9px 22px;border-radius:2px;font-weight:600!important}
+.nav-cta:hover{background:var(--gold)!important;color:var(--black)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:101}
+.hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:.3s}
+
+/* ── HERO FULL-SCREEN ── */
+.hero{height:100vh;min-height:680px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('assets/instagram/post-3.jpg') center/cover no-repeat;transform:scale(1.08);will-change:transform;transition:transform 8s ease}
+.hero-bg.loaded{transform:scale(1)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(170deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.7) 55%,rgba(0,0,0,.88) 100%)}
+.hero-content{position:relative;z-index:1;max-width:800px;padding:0 36px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-size:.72rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:22px}
+.eyebrow::before,.eyebrow::after{content:'';width:28px;height:1px;background:var(--gold)}
+
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3.4rem,6.5vw,7rem);line-height:1.02;font-weight:700;margin-bottom:24px;text-shadow:0 4px 30px rgba(0,0,0,.4)}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.75);line-height:1.72;margin-bottom:40px;max-width:520px;margin-left:auto;margin-right:auto;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.btn-white{background:var(--white);color:var(--black);padding:14px 32px;text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.8px;text-transform:uppercase;border-radius:2px;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-white:hover{background:var(--gold)}
+.btn-ghost{color:var(--white);padding:14px 32px;text-decoration:none;font-size:.82rem;font-weight:500;letter-spacing:.8px;text-transform:uppercase;border:1px solid rgba(255,255,255,.35);border-radius:2px;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-award{margin-top:32px;display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(200,169,110,.45);border-radius:100px;padding:9px 22px;font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.65);backdrop-filter:blur(8px);background:rgba(0,0,0,.25)}
+.hero-award strong{color:var(--gold);font-weight:700;font-size:.8rem;letter-spacing:0}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.45);font-size:.65rem;letter-spacing:2.5px;text-transform:uppercase;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* SECTIONS */
+section{padding:96px 56px}
+.sec-wrap{max-width:1160px;margin:0 auto}
+.sec-eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
+.sec-eyebrow::before{content:'';width:22px;height:1px;background:var(--gold)}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.2vw,3.2rem);line-height:1.15;font-weight:700;margin-bottom:18px}
+.sec-title em{font-style:italic;color:var(--gold)}
+
+/* ── ABOUT ── */
+#somos{background:var(--dark);position:relative;overflow:hidden}
+#somos::before{content:'SOMOS';position:absolute;font-family:'Playfair Display',serif;font-size:17vw;font-weight:900;color:rgba(255,255,255,.02);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none}
+.somos-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.somos-text p{font-size:1rem;color:rgba(255,255,255,.68);line-height:1.82;margin-bottom:22px}
+.somos-quote{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-style:italic;color:var(--gold);line-height:1.45;border-left:2px solid var(--gold);padding-left:22px;margin:30px 0}
+.values{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
+.val{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px;transition:border-color .2s}
+.val:hover{border-color:var(--gold)}
+.val-icon{width:28px;height:28px;margin-bottom:10px;display:flex;align-items:center}
+.val-title{font-size:.82rem;font-weight:600;margin-bottom:3px}
+.val-text{font-size:.75rem;color:var(--gray);line-height:1.5}
+
+/* Achievement banner */
+.achievement-banner{display:flex;align-items:center;gap:24px;background:linear-gradient(135deg,rgba(200,169,110,.1),rgba(200,169,110,.04));border:1px solid rgba(200,169,110,.3);border-radius:12px;padding:24px 28px;margin-top:56px}
+.ach-icon{width:52px;height:52px;background:rgba(200,169,110,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ach-label{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.ach-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:4px;line-height:1.3}
+.ach-text{font-size:.8rem;color:var(--gray);line-height:1.5}
+
+/* Video section */
+.video-section{margin-top:80px}
+.video-wrapper{max-width:700px;margin:36px auto 0;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;position:relative}
+.video-placeholder{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:48px}
+.video-play{width:72px;height:72px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.video-play:hover{background:rgba(200,169,110,.15)}
+.video-caption{font-size:.82rem;color:var(--lgray);text-align:center;padding:14px 24px;border-top:1px solid var(--border)}
+
+/* IG CARD */
+.ig-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;box-shadow:0 32px 64px rgba(0,0,0,.5)}
+.ig-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.ig-ring{width:68px;height:68px;border-radius:50%;padding:3px;background:conic-gradient(#c8a96e 0deg,#f5c842 90deg,#c8a96e 180deg,#7a5820 270deg,#c8a96e 360deg);animation:spin 4s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ig-ring-inner{width:100%;height:100%;border-radius:50%;overflow:hidden;background:var(--dark)}
+.ig-ring-inner img{width:100%;height:100%;object-fit:cover;display:block}
+.ig-name{font-size:.92rem;font-weight:600;display:flex;align-items:center;gap:5px}
+.ig-badge{width:17px;height:17px;border-radius:50%;background:linear-gradient(135deg,#0095f6,#00c5ff);display:inline-flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,149,246,.4);flex-shrink:0}
+.ig-badge svg{width:9px;height:9px}
+.ig-handle{font-size:.75rem;color:var(--lgray);margin-top:2px}
+.ig-cat{font-size:.68rem;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-top:3px}
+.ig-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.ig-stat{background:var(--dark);padding:11px 6px;text-align:center}
+.ig-stat-n{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
+.ig-stat-l{font-size:.62rem;color:var(--lgray);margin-top:2px}
+.ig-bio-text{font-size:.8rem;color:rgba(255,255,255,.72);line-height:1.5;margin-bottom:14px}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;border-radius:8px;overflow:hidden}
+.ig-grid img{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:opacity .2s}
+.ig-grid img:hover{opacity:.75}
+.ig-btn{display:block;width:100%;text-align:center;background:var(--white);color:var(--black);padding:9px;border-radius:8px;font-size:.8rem;font-weight:600;text-decoration:none;margin-top:12px;transition:.2s}
+.ig-btn:hover{background:var(--gold)}
+
+/* ── SPECIALTY ── */
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-top:56px}
+.spec-grid.rev{direction:rtl}
+.spec-grid.rev>*{direction:ltr}
+.spec-img{position:relative}
+.spec-img img{width:100%;height:460px;object-fit:cover;border-radius:12px;display:block}
+.spec-img::after{content:'';position:absolute;inset:-10px -10px 10px 10px;border:1px solid var(--border);border-radius:12px;z-index:-1}
+.spec-content h3{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;margin-bottom:18px;line-height:1.2}
+.spec-content h3 em{font-style:italic;color:var(--gold)}
+.spec-content p{color:rgba(255,255,255,.65);font-size:.98rem;line-height:1.82;margin-bottom:18px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.tag{background:var(--card);border:1px solid var(--border);padding:7px 15px;border-radius:100px;font-size:.78rem;color:rgba(255,255,255,.78)}
+.tag.star{background:var(--gold);color:var(--black);border-color:var(--gold);font-weight:600}
+
+/* ── GALLERY ── */
+#galeria{background:var(--dark)}
+.gal-cols{columns:3;gap:8px;margin-top:44px}
+.gal-item{break-inside:avoid;margin-bottom:8px;border-radius:6px;overflow:hidden;position:relative;cursor:pointer}
+.gal-item img{width:100%;display:block;transition:transform .5s,filter .3s}
+.gal-item:hover img{transform:scale(1.04);filter:brightness(.72)}
+.gal-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.gal-item:hover .gal-overlay{opacity:1}
+
+/* ── METRICS ── */
+#metricas{text-align:center}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:12px;overflow:hidden;max-width:760px;margin:44px auto 0}
+.metric{background:var(--dark);padding:38px 16px}
+.metric-n{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:var(--gold);line-height:1;display:block}
+.metric-l{font-size:.72rem;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-top:8px}
+.metric.highlight{background:rgba(200,169,110,.07)}
+.metric.highlight .metric-n{font-size:2.2rem}
+
+/* ── VISIT ── */
+#visita{background:var(--dark)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.visit-items{display:flex;flex-direction:column;gap:26px;margin-top:36px}
+.visit-item{display:flex;gap:18px;align-items:flex-start}
+.visit-icon{width:42px;height:42px;background:var(--card);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.visit-label{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.visit-text{font-size:.92rem;color:rgba(255,255,255,.78);line-height:1.65}
+.horario-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.horario-day{font-size:.72rem;letter-spacing:.5px;color:var(--lgray);min-width:72px}
+.horario-time{font-size:.92rem;color:rgba(255,255,255,.82)}
+.map-card{border:1px solid var(--border);border-radius:16px;height:400px;overflow:hidden;position:relative}
+.map-card iframe{width:100%;height:100%;border:none;display:block;filter:invert(1) hue-rotate(180deg) brightness(.85) saturate(.55)}
+.map-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(10,10,10,.96) 0%,rgba(10,10,10,.5) 55%,transparent 100%);padding:22px 22px 18px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.map-overlay h4{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:3px}
+.map-overlay p{font-size:.78rem;color:var(--lgray)}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid var(--border);padding:56px 56px 28px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;max-width:1160px;margin:0 auto 44px}
+.ft-brand h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:10px}
+.ft-brand h3 span{color:var(--gold)}
+.ft-brand p{font-size:.86rem;color:var(--gray);line-height:1.75;max-width:300px;margin-bottom:22px}
+.ft-socials{display:flex;gap:10px}
+.ft-soc{width:38px;height:38px;background:var(--card);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--white);text-decoration:none;transition:.2s}
+.ft-soc:hover{border-color:var(--gold);color:var(--gold)}
+.ft-col h4{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-col ul a{color:var(--gray);text-decoration:none;font-size:.86rem;transition:color .2s}
+.ft-col ul a:hover{color:var(--white)}
+.ft-bottom{max-width:1160px;margin:0 auto;padding-top:22px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--gray)}
+
+/* ── ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  nav{padding:16px 28px}
+  nav.scrolled{padding:12px 28px}
+  section{padding:72px 28px}
+  .somos-grid,.spec-grid,.visit-grid{grid-template-columns:1fr;gap:48px}
+  .spec-grid.rev{direction:ltr}
+  .gal-cols{columns:2}
+  .metrics{grid-template-columns:repeat(3,1fr)}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:36px}
+  .ft-brand{grid-column:1/-1}
+  .ig-card{max-width:420px}
+  .achievement-banner{flex-direction:column;text-align:center}
+}
+@media(max-width:640px){
+  nav{padding:14px 20px}
+  nav.scrolled{padding:10px 20px}
+  .nav-links{display:none}
+  .nav-links.open{display:flex;position:fixed;inset:0;background:var(--black);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:100}
+  .nav-links.open a{font-size:1.1rem}
+  .hamburger{display:flex}
+  .hero h1{font-size:3rem}
+  section{padding:60px 20px}
+  .gal-cols{columns:2}
+  .values{grid-template-columns:1fr}
+  .spec-img img{height:320px}
+  .metrics{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr;gap:28px}
+  .ft-bottom{flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">SOMOS <span>·</span> SC</a>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="#somos">Nosotros</a></li>
+    <li><a href="#cafe">El Café</a></li>
+    <li><a href="#pasteleria">Pastelería</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#visita" class="nav-cta">Visítanos</a></li>
+  </ul>
+  <div class="hamburger" id="ham" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO FULL-SCREEN ── -->
+<section class="hero" id="inicio">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="eyebrow">Specialty Coffee &amp; Pastelería</div>
+    <h1>Donde el café<br>es un <em>arte</em></h1>
+    <p>Una cafetería de especialidad con alma propia. Café de calidad, pastelería artesanal y un espacio pensado para nuestra tribu.</p>
+    <div class="btn-row">
+      <a href="#somos" class="btn-white">
+        Conócenos
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="btn-ghost">Instagram</a>
+    </div>
+    <a href="https://theworlds100bestcoffeeshops.com/locales-south/somos-specialty-coffee/" target="_blank" class="hero-award">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--gold)"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      <strong>#74</strong> Las 100 Mejores Cafeterías de Sudamérica 2025
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <span>Descubre</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ── SOBRE NOSOTROS ── -->
+<section id="somos">
+  <div class="sec-wrap">
+    <div class="somos-grid">
+      <div class="somos-text">
+        <div class="sec-eyebrow">Quiénes somos</div>
+        <h2 class="sec-title">Somos <em>más</em><br>que café</h2>
+        <p>En SOMOS creemos que el café es mucho más que una bebida. Es una experiencia, un momento, una conversación que vale la pena saborear con calma.</p>
+        <blockquote class="somos-quote">"Yo le llamo arte a todo aquello que de alguna manera nos devuelve la vida"</blockquote>
+        <p>Nuestro espacio nació para ser un refugio de los creativos y apasionados de nuestra ciudad — donde el buen café y la pastelería artesanal son el pretexto perfecto para conectar con lo que importa.</p>
+        <div class="values">
+          <div class="val reveal">
+            <div class="val-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.7" stroke-linecap="round"><path d="M17 8h1a4 4 0 010 8h-1M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <div class="val-title">Café de Especialidad</div>
+            <div class="val-text">Granos seleccionados con trazabilidad y tueste artesanal</div>
+          </div>
+          <div class="val reveal d1">
+            <div class="val-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.7" stroke-linecap="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+            </div>
+            <div class="val-title">Pastelería Artesanal</div>
+            <div class="val-text">Elaborada cada día con ingredientes de primera</div>
+          </div>
+          <div class="val reveal d2">
+            <div class="val-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.7" stroke-linecap="round"><circle cx="13.5" cy="6.5" r=".5" fill="var(--gold)"/><circle cx="17.5" cy="10.5" r=".5" fill="var(--gold)"/><circle cx="8.5" cy="7.5" r=".5" fill="var(--gold)"/><circle cx="6.5" cy="12.5" r=".5" fill="var(--gold)"/><path d="M12 2C6.5 2 2 6.5 2 12c0 5.5 4.5 10 10 10 .926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125 0-.955.754-1.688 1.688-1.688H16c3.022 0 5.5-2.478 5.5-5.5C21.5 6.22 17.239 2 12 2z"/></svg>
+            </div>
+            <div class="val-title">Arte &amp; Cultura</div>
+            <div class="val-text">Espacio abierto para creativos y artistas locales</div>
+          </div>
+          <div class="val reveal d3">
+            <div class="val-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.7" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="val-title">Comunidad</div>
+            <div class="val-text">Un lugar donde nuestra tribu se encuentra y crece</div>
+          </div>
+        </div>
+
+        <!-- Achievement banner -->
+        <div class="achievement-banner reveal">
+          <div class="ach-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"><path d="M8 21h8M12 17v4M17 5V3H7v2M12 17c-3.87 0-7-3.13-7-7h14c0 3.87-3.13 7-7 7z"/><path d="M5 5H2v5c0 1.66 1.34 3 3 3M19 5h3v5c0 1.66-1.34 3-3 3"/></svg>
+          </div>
+          <div>
+            <div class="ach-label">Top 100 Coffee Shops South America · 2025</div>
+            <div class="ach-title">Puesto #74 en Sudamérica</div>
+            <div class="ach-text">SOMOS figura en el ranking de las 100 mejores cafeterías de Sudamérica. Un reconocimiento a cada taza, cada croissant y cada persona que forma nuestra tribu.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IG CARD -->
+      <div class="ig-card reveal">
+        <div class="ig-head">
+          <div class="ig-ring">
+            <div class="ig-ring-inner">
+              <img src="assets/instagram/profile.jpg" alt="SOMOS specialty coffee" onerror="this.parentElement.style.background='#2a2a2a'">
+            </div>
+          </div>
+          <div>
+            <div class="ig-name">
+              SOMOS specialty coffee
+              <span class="ig-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+            </div>
+            <div class="ig-handle">@somos_specialty_coffee</div>
+            <div class="ig-cat">Cafetería · Specialty Coffee</div>
+          </div>
+        </div>
+        <div class="ig-stats">
+          <div class="ig-stat"><div class="ig-stat-n">32</div><div class="ig-stat-l">Posts</div></div>
+          <div class="ig-stat"><div class="ig-stat-n">1.765</div><div class="ig-stat-l">Seguidores</div></div>
+          <div class="ig-stat"><div class="ig-stat-n">129</div><div class="ig-stat-l">Seguidos</div></div>
+        </div>
+        <p class="ig-bio-text">#74 · 100 Mejores Cafeterías de Sudamérica 2025</p>
+        <div class="ig-grid">
+          <img src="assets/instagram/post-2.jpg" alt="" onerror="this.style.background='#222'">
+          <img src="assets/instagram/post-3.jpg" alt="" onerror="this.style.background='#222'">
+          <img src="assets/instagram/post-4.jpg" alt="" onerror="this.style.background='#222'">
+          <img src="assets/instagram/post-6.jpg" alt="" onerror="this.style.background='#222'">
+          <img src="assets/instagram/post-8.jpg" alt="" onerror="this.style.background='#222'">
+          <img src="assets/instagram/post-10.jpg" alt="" onerror="this.style.background='#222'">
+        </div>
+        <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="ig-btn">Seguir en Instagram</a>
+      </div>
+    </div>
+
+    <!-- VIDEO ANDRES Y ALE -->
+    <div class="video-section reveal">
+      <div style="text-align:center">
+        <div class="sec-eyebrow" style="justify-content:center">Conócenos de cerca</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2.1rem);font-weight:700;margin-top:8px">Andrés y Ale te <em style="font-style:italic;color:var(--gold)">cuentan</em> nuestra historia</h3>
+      </div>
+      <div class="video-wrapper">
+        <iframe
+          src="https://www.instagram.com/reel/DS6DQcXjM15/embed"
+          width="100%"
+          style="border:none;min-height:560px;display:block"
+          scrolling="no"
+          allowtransparency="true"
+          allowfullscreen
+        ></iframe>
+        <div class="video-caption">@somos_specialty_coffee · Sucre, Bolivia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EL CAFÉ ── -->
+<section id="cafe">
+  <div class="sec-wrap">
+    <div class="sec-eyebrow">Lo que nos apasiona</div>
+    <h2 class="sec-title">El <em>café</em> de especialidad</h2>
+    <div class="spec-grid">
+      <div class="spec-img reveal">
+        <img src="assets/instagram/post-6.jpg" alt="Café de especialidad" onerror="this.src='assets/instagram/post-9.jpg'">
+      </div>
+      <div class="spec-content reveal d2">
+        <h3>Cada taza,<br>una <em>historia</em></h3>
+        <p>Trabajamos exclusivamente con café de especialidad — granos con puntaje SCA superior a 80 puntos, cultivados por productores que aman su oficio tanto como nosotros amamos el nuestro.</p>
+        <p>Desde el espresso clásico hasta métodos de filtro, cada preparación es cuidada al detalle para que en cada sorbo descubras algo nuevo.</p>
+        <div class="tags">
+          <span class="tag star">Americano</span>
+          <span class="tag">Cappuccino</span>
+          <span class="tag">Latte</span>
+          <span class="tag">Flat White</span>
+          <span class="tag">Chemex</span>
+          <span class="tag">V60</span>
+          <span class="tag">Aeropress</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PASTELERÍA ── -->
+<section id="pasteleria" style="background:var(--dark)">
+  <div class="sec-wrap">
+    <div class="sec-eyebrow">Nuestra especialidad</div>
+    <h2 class="sec-title">La <em>pastelería</em></h2>
+    <div class="spec-grid rev">
+      <div class="spec-img reveal">
+        <img src="assets/instagram/post-4.jpg" alt="Pastelería SOMOS" onerror="this.src='assets/instagram/post-2.jpg'">
+      </div>
+      <div class="spec-content reveal d2">
+        <h3>Arte que<br>se <em>saborea</em></h3>
+        <p>La pastelería es nuestra seña de identidad. Cada pieza sale del horno con la misma dedicación que ponemos en el café: ingredientes de calidad, recetas cuidadas y ese toque que hace que quieras repetir.</p>
+        <p>Nuestra carta cambia con las temporadas — ven y descubre qué hay hoy en vitrina. Te aseguramos que no te irás con las manos vacías.</p>
+        <div class="tags">
+          <span class="tag star">Croissants</span>
+          <span class="tag">Pain au Chocolat</span>
+          <span class="tag">Tartas</span>
+          <span class="tag">Cinnamon Roll</span>
+        </div>
+        <div style="margin-top:30px">
+          <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="btn-white">
+            Ver en Instagram
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALERÍA ── -->
+<section id="galeria">
+  <div class="sec-wrap">
+    <div class="sec-eyebrow">Instagram</div>
+    <h2 class="sec-title">Nuestra <em>galería</em></h2>
+    <p style="color:var(--gray);font-size:.93rem;margin-top:10px">Un vistazo a lo que nos inspira cada día.</p>
+    <div class="gal-cols">
+      <div class="gal-item reveal"><img src="assets/instagram/post-4.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal d1"><img src="assets/instagram/post-2.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal d2"><img src="assets/instagram/post-6.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal"><img src="assets/instagram/post-8.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal d1"><img src="assets/instagram/post-10.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal d2"><img src="assets/instagram/post-3.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal"><img src="assets/instagram/post-5.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="btn-ghost">Ver más en Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── MÉTRICAS ── -->
+<section id="metricas">
+  <div class="sec-wrap" style="text-align:center">
+    <div class="sec-eyebrow" style="justify-content:center">En números</div>
+    <h2 class="sec-title">SOMOS en <em>cifras</em></h2>
+    <div class="metrics">
+      <div class="metric reveal"><span class="metric-n" data-target="1765">0</span><div class="metric-l">Seguidores Instagram</div></div>
+      <div class="metric reveal d1"><span class="metric-n" data-target="32">0</span><div class="metric-l">Publicaciones</div></div>
+      <div class="metric highlight reveal d2"><span class="metric-n" data-target="74" data-prefix="#">#0</span><div class="metric-l">Mejores Cafeterías de Sudamérica</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VISÍTANOS ── -->
+<section id="visita">
+  <div class="sec-wrap">
+    <div class="visit-grid">
+      <div>
+        <div class="sec-eyebrow">Encuéntranos</div>
+        <h2 class="sec-title">Ven a <em>visitarnos</em></h2>
+        <p style="color:rgba(255,255,255,.6);line-height:1.8">Nos encantaría verte por aquí. Ven a conocernos, prueba nuestro café y deja que la pastelería hable por sí misma.</p>
+        <div class="visit-items">
+          <div class="visit-item reveal">
+            <div class="visit-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="visit-label">Dirección</div>
+              <div class="visit-text">Km 7 #73, Local del Obelisco<br>Sucre, Bolivia</div>
+            </div>
+          </div>
+          <div class="visit-item reveal d1">
+            <div class="visit-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="visit-label">Horario</div>
+              <div class="visit-text">
+                <div class="horario-row"><span class="horario-day">Lun – Vie</span><span class="horario-time">8:00 – 12:30 &nbsp;·&nbsp; 15:30 – 20:30</span></div>
+                <div class="horario-row"><span class="horario-day">Sábado</span><span class="horario-time">16:00 – 20:00</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="visit-item reveal d2">
+            <div class="visit-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="var(--gold)" stroke="none"/></svg>
+            </div>
+            <div>
+              <div class="visit-label">Contacto</div>
+              <div class="visit-text">
+                <a href="https://wa.me/59177131579" target="_blank" style="color:var(--gold);text-decoration:none">+591 77131579</a><br>
+                <span style="color:var(--gray);font-size:.83rem">WhatsApp · Instagram: <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" style="color:rgba(255,255,255,.6);text-decoration:none">@somos_specialty_coffee</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-card reveal">
+        <iframe
+          src="https://maps.google.com/maps?q=-19.043792,-65.262736&output=embed&hl=es&z=17"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="SOMOS specialty coffee"
+        ></iframe>
+        <div class="map-overlay">
+          <div>
+            <h4>SOMOS specialty coffee</h4>
+            <p>Km 7 #73, Obelisco · Sucre, Bolivia</p>
+          </div>
+          <a href="https://maps.app.goo.gl/qDNyY3dWYanv8FPJ6" target="_blank" class="btn-white" style="font-size:.72rem;padding:9px 18px;white-space:nowrap;flex-shrink:0">
+            Abrir Maps
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <h3>SOMOS <span>specialty coffee</span></h3>
+      <p>Cafetería de especialidad con alma propia. Café de calidad, pastelería artesanal y un espacio de encuentro para nuestra tribu.</p>
+      <div class="ft-socials">
+        <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="ft-soc" title="Instagram">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4>Menu</h4>
+      <ul>
+        <li><a href="#somos">Nosotros</a></li>
+        <li><a href="#cafe">El Café</a></li>
+        <li><a href="#pasteleria">Pastelería</a></li>
+        <li><a href="#galeria">Galería</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Visítanos</h4>
+      <ul>
+        <li><a href="#visita">Calle Km 7 #73</a></li>
+        <li><a href="#visita">Local Obelisco</a></li>
+        <li><a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank">Instagram</a></li>
+        <li><a href="https://wa.me/59177131579" target="_blank">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 SOMOS specialty coffee. Todos los derechos reservados.</span>
+    <span>Hecho con <span style="color:var(--gold)">♥</span> para los amantes del buen café</span>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50));
+
+// Mobile menu
+function toggleNav() {
+  document.getElementById('navlinks').classList.toggle('open');
+}
+document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open')));
+
+// Hero background — try photos in order by quality, fallback to next
+(function() {
+  const photos = [
+    'assets/instagram/post-3.jpg',
+    'assets/instagram/post-4.jpg',
+    'assets/instagram/post-6.jpg',
+    'assets/instagram/post-8.jpg'
+  ];
+  const bg = document.getElementById('heroBg');
+  let i = 0;
+  function tryNext() {
+    const img = new Image();
+    img.onload = () => {
+      bg.style.backgroundImage = `url('${photos[i]}')`;
+      setTimeout(() => bg.classList.add('loaded'), 100);
+    };
+    img.onerror = () => { if (++i < photos.length) tryNext(); };
+    img.src = photos[i];
+  }
+  tryNext();
+})();
+
+// Reveal on scroll
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// Counters
+const co = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting || e.target.dataset.done) return;
+    e.target.dataset.done = 1;
+    const target = +e.target.dataset.target;
+    const prefix = e.target.dataset.prefix || '';
+    const dur = 1800, t0 = performance.now();
+    const tick = now => {
+      const p = Math.min((now - t0) / dur, 1);
+      const v = Math.round((1 - Math.pow(1 - p, 3)) * target);
+      e.target.textContent = prefix + (target >= 1000 ? v.toLocaleString('es-ES') : v);
+      if (p < 1) requestAnimationFrame(tick);
+      else e.target.textContent = prefix + (target >= 1000 ? target.toLocaleString('es-ES') : target);
+    };
+    requestAnimationFrame(tick);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.metric-n').forEach(el => co.observe(el));
+
+// Parallax hero bg on scroll
+window.addEventListener('scroll', () => {
+  const bg = document.getElementById('heroBg');
+  if (bg) bg.style.transform = `scale(1.08) translateY(${scrollY * 0.15}px)`;
+  document.querySelectorAll('.spec-img img').forEach(img => {
+    const r = img.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0)
+      img.style.transform = `translateY(${(r.top / innerHeight) * 20}px)`;
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
