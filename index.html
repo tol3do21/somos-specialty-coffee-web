@@ -277,9 +277,9 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
       <div class="somos-text">
         <div class="sec-eyebrow">Quiénes somos</div>
         <h2 class="sec-title">Somos <em>más</em><br>que café</h2>
-        <p>En SOMOS creemos que el café es mucho más que una bebida. Es una experiencia, un momento, una conversación que vale la pena saborear con calma.</p>
+        <p>SOMOS nació hace 3 años de la mano de Andrés y Ale — dos apasionados del buen café que soñaban con un espacio donde la especialidad, el arte y la comunidad convivieran bajo el mismo techo en Sucre.</p>
         <blockquote class="somos-quote">"Yo le llamo arte a todo aquello que de alguna manera nos devuelve la vida"</blockquote>
-        <p>Nuestro espacio nació para ser un refugio de los creativos y apasionados de nuestra ciudad — donde el buen café y la pastelería artesanal son el pretexto perfecto para conectar con lo que importa.</p>
+        <p>Lo que empezó como un sueño se convirtió en un refugio para los creativos y apasionados de nuestra ciudad — donde trabajamos con variedades como Catuaí, Pacamara y Geisha, y la pastelería artesanal sale del horno cada día con la misma dedicación que ponemos en cada taza.</p>
         <div class="values">
           <div class="val reveal">
             <div class="val-icon">
@@ -466,9 +466,9 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
     <div class="sec-eyebrow" style="justify-content:center">En números</div>
     <h2 class="sec-title">SOMOS en <em>cifras</em></h2>
     <div class="metrics">
-      <div class="metric reveal"><span class="metric-n" data-target="1765">0</span><div class="metric-l">Seguidores Instagram</div></div>
-      <div class="metric reveal d1"><span class="metric-n" data-target="32">0</span><div class="metric-l">Publicaciones</div></div>
-      <div class="metric highlight reveal d2"><span class="metric-n" data-target="74" data-prefix="#">#0</span><div class="metric-l">Mejores Cafeterías de Sudamérica</div></div>
+      <div class="metric reveal"><span class="metric-n" data-target="3" data-suffix="+">0</span><div class="metric-l">Años haciendo café de especialidad</div></div>
+      <div class="metric reveal d1"><span class="metric-n" data-target="3">0</span><div class="metric-l">Variedades únicas — Catuaí, Pacamara, Geisha</div></div>
+      <div class="metric highlight reveal d2"><span class="metric-n" data-target="74" data-prefix="#">#0</span><div class="metric-l">Mejores Cafeterías de Sudamérica 2025</div></div>
     </div>
   </div>
 </section>
@@ -511,7 +511,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
               <div class="visit-label">Contacto</div>
               <div class="visit-text">
                 <a href="https://wa.me/59177131579" target="_blank" style="color:var(--gold);text-decoration:none">+591 77131579</a><br>
-                <span style="color:var(--gray);font-size:.83rem">WhatsApp · Instagram: <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" style="color:rgba(255,255,255,.6);text-decoration:none">@somos_specialty_coffee</a></span>
+                <a href="mailto:somos.pasteleriacafeteria@gmail.com" style="color:rgba(255,255,255,.55);font-size:.83rem;text-decoration:none">somos.pasteleriacafeteria@gmail.com</a>
               </div>
             </div>
           </div>
@@ -550,6 +550,9 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
         <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="ft-soc" title="Instagram">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         </a>
+        <a href="https://www.facebook.com/p/Somos-Pasteler%C3%ADa-y-Cafeter%C3%ADa-100090175716587/" target="_blank" class="ft-soc" title="Facebook">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
       </div>
     </div>
     <div class="ft-col">
@@ -567,7 +570,9 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
         <li><a href="#visita">Calle Km 7 #73</a></li>
         <li><a href="#visita">Local Obelisco</a></li>
         <li><a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank">Instagram</a></li>
+        <li><a href="https://www.facebook.com/p/Somos-Pasteler%C3%ADa-y-Cafeter%C3%ADa-100090175716587/" target="_blank">Facebook</a></li>
         <li><a href="https://wa.me/59177131579" target="_blank">WhatsApp</a></li>
+        <li><a href="mailto:somos.pasteleriacafeteria@gmail.com">Email</a></li>
       </ul>
     </div>
   </div>
@@ -623,13 +628,14 @@ const co = new IntersectionObserver(entries => {
     e.target.dataset.done = 1;
     const target = +e.target.dataset.target;
     const prefix = e.target.dataset.prefix || '';
+    const suffix = e.target.dataset.suffix || '';
     const dur = 1800, t0 = performance.now();
     const tick = now => {
       const p = Math.min((now - t0) / dur, 1);
       const v = Math.round((1 - Math.pow(1 - p, 3)) * target);
-      e.target.textContent = prefix + (target >= 1000 ? v.toLocaleString('es-ES') : v);
+      e.target.textContent = prefix + (target >= 1000 ? v.toLocaleString('es-ES') : v) + suffix;
       if (p < 1) requestAnimationFrame(tick);
-      else e.target.textContent = prefix + (target >= 1000 ? target.toLocaleString('es-ES') : target);
+      else e.target.textContent = prefix + (target >= 1000 ? target.toLocaleString('es-ES') : target) + suffix;
     };
     requestAnimationFrame(tick);
   });
