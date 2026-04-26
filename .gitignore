@@ -1,0 +1,9 @@
+# Herramientas internas
+.claude/
+CLAUDE.md
+INSTRUCCIONES.md
+node_modules/
+package.json
+package-lock.json
+scrape-bio.js
+scrape-instagram.js
