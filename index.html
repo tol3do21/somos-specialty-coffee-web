@@ -1,9 +1,30 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOMOS Specialty Coffee</title>
+<title>SOMOS Specialty Coffee | Cafetería de Especialidad en Sucre, Bolivia</title>
+<meta name="description" content="Cafetería de especialidad en Sucre, Bolivia. Café de especialidad preparado con cuidado, pastelería artesanal y un espacio con alma propia. Km 7 #73, Local del Obelisco. Lun–Vie 8:00–20:30.">
+<meta name="keywords" content="cafetería especialidad Sucre, specialty coffee Bolivia, café de especialidad Sucre, SOMOS café, pastelería artesanal Sucre, coffee shop Sucre">
+<meta name="robots" content="index, follow">
+<meta name="author" content="SOMOS Specialty Coffee">
+
+<!-- Open Graph -->
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="SOMOS Specialty Coffee | Cafetería de Especialidad en Sucre, Bolivia">
+<meta property="og:description" content="Cafetería de especialidad en Sucre, Bolivia. Café de especialidad preparado con cuidado, pastelería artesanal y un espacio con alma propia.">
+<meta property="og:image" content="assets/instagram/post-3.jpg">
+<meta property="og:locale" content="es_BO">
+<meta property="og:site_name" content="SOMOS Specialty Coffee">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SOMOS Specialty Coffee | Sucre, Bolivia">
+<meta name="twitter:description" content="Cafetería de especialidad en Sucre, Bolivia. Café de especialidad, pastelería artesanal y un espacio con alma propia.">
+<meta name="twitter:image" content="assets/instagram/post-3.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -36,6 +57,9 @@ nav.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(20px);padding:14
 .nav-links a:hover{color:var(--gold)}
 .nav-cta{background:var(--white)!important;color:var(--black)!important;padding:9px 22px;border-radius:2px;font-weight:600!important}
 .nav-cta:hover{background:var(--gold)!important;color:var(--black)!important}
+.nav-right{display:flex;align-items:center;gap:16px}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.6);font-size:.68rem;letter-spacing:1.5px;padding:6px 11px;border-radius:2px;cursor:pointer;transition:.2s;font-family:'Inter',sans-serif;text-transform:uppercase}
+.lang-btn:hover{border-color:var(--gold);color:var(--gold)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:101}
 .hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:.3s}
 
@@ -184,6 +208,13 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
 .ft-col ul a:hover{color:var(--white)}
 .ft-bottom{max-width:1160px;margin:0 auto;padding-top:22px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--gray)}
 
+/* ── WHATSAPP FLOTANTE ── */
+.wpp-float{position:fixed;bottom:28px;right:28px;z-index:200;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.wpp-tooltip{background:var(--card);border:1px solid rgba(200,169,110,.5);color:var(--white);font-size:.73rem;letter-spacing:.5px;padding:7px 14px;border-radius:6px;white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .2s,transform .2s;pointer-events:none}
+.wpp-float:hover .wpp-tooltip,.wpp-float:focus-within .wpp-tooltip{opacity:1;transform:translateX(0)}
+.wpp-btn{width:54px;height:54px;background:var(--card);border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;transition:background .2s,color .2s,transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(200,169,110,.2)}
+.wpp-btn:hover{background:var(--gold);color:var(--black);transform:scale(1.1);box-shadow:0 6px 28px rgba(200,169,110,.4)}
+
 /* ── ANIMATIONS ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
 .reveal.visible{opacity:1;transform:none}
@@ -210,7 +241,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   .nav-links.open{display:flex;position:fixed;inset:0;background:var(--black);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:100}
   .nav-links.open a{font-size:1.1rem}
   .hamburger{display:flex}
-  .hero h1{font-size:3rem}
+  .hero h1{font-size:clamp(2.4rem,9vw,3.2rem)}
   section{padding:60px 20px}
   .gal-cols{columns:2}
   .values{grid-template-columns:1fr}
@@ -218,29 +249,86 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   .metrics{grid-template-columns:1fr}
   .ft-grid{grid-template-columns:1fr;gap:28px}
   .ft-bottom{flex-direction:column;gap:8px;text-align:center}
+  .wpp-float{bottom:20px;right:20px}
+}
+@media(max-width:480px){
+  .gal-cols{columns:1}
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "SOMOS Specialty Coffee",
+  "description": "Cafetería de especialidad en Sucre, Bolivia. Café de especialidad preparado con cuidado, pastelería artesanal y un espacio con alma propia.",
+  "telephone": "+59177131579",
+  "email": "somos.pasteleriacafeteria@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Km 7 #73, Local del Obelisco",
+    "addressLocality": "Sucre",
+    "addressRegion": "Chuquisaca",
+    "addressCountry": "BO"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -19.043792,
+    "longitude": -65.262736
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "08:00",
+      "closes": "12:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "15:30",
+      "closes": "20:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday"],
+      "opens": "16:00",
+      "closes": "20:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/somos_specialty_coffee/",
+    "https://www.facebook.com/p/Somos-Pasteler%C3%ADa-y-Cafeter%C3%ADa-100090175716587/"
+  ],
+  "servesCuisine": ["Café de especialidad", "Pastelería artesanal"],
+  "priceRange": "$$",
+  "image": "assets/instagram/post-3.jpg"
+}
+</script>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <img src="assets/instagram/profile.jpg" alt="SOMOS specialty coffee">
+    <img src="assets/instagram/profile.jpg" alt="SOMOS specialty coffee" loading="eager">
     <div class="nav-logo-text">
       <strong>SOMOS</strong>
       <span>specialty coffee</span>
     </div>
   </a>
   <ul class="nav-links" id="navlinks">
-    <li><a href="#somos">Nosotros</a></li>
-    <li><a href="#cafe">El Café</a></li>
-    <li><a href="#pasteleria">Pastelería</a></li>
-    <li><a href="#galeria">Galería</a></li>
-    <li><a href="#visita" class="nav-cta">Visítanos</a></li>
+    <li><a href="#somos" data-i18n="nav.about">Nosotros</a></li>
+    <li><a href="#cafe" data-i18n="nav.coffee">El Café</a></li>
+    <li><a href="#pasteleria" data-i18n="nav.pastry">Pastelería</a></li>
+    <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
+    <li><a href="#visita" class="nav-cta" data-i18n="nav.visit">Visítanos</a></li>
   </ul>
-  <div class="hamburger" id="ham" onclick="toggleNav()">
-    <span></span><span></span><span></span>
+  <div class="nav-right">
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()" aria-label="Switch language">EN</button>
+    <div class="hamburger" id="ham" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
@@ -249,23 +337,23 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="eyebrow">Specialty Coffee &amp; Pastelería</div>
-    <h1>Donde el café<br>es un <em>arte</em></h1>
-    <p>Una cafetería de especialidad con alma propia. Café de calidad, pastelería artesanal y un espacio pensado para nuestra tribu.</p>
+    <div class="eyebrow" data-i18n="hero.eyebrow">Specialty Coffee &amp; Pastelería</div>
+    <h1 data-i18n-html="hero.h1">Donde el café<br>es un <em>arte</em></h1>
+    <p data-i18n="hero.p">Una cafetería de especialidad con alma propia. Café de especialidad, pastelería artesanal y un espacio pensado para nuestra tribu.</p>
     <div class="btn-row">
       <a href="#somos" class="btn-white">
-        Conócenos
+        <span data-i18n="hero.btn">Conócenos</span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="btn-ghost">Instagram</a>
     </div>
     <a href="https://theworlds100bestcoffeeshops.com/locales-south/somos-specialty-coffee/" target="_blank" class="hero-award">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--gold)"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-      <strong>#74</strong> Las 100 Mejores Cafeterías de Sudamérica 2025
+      <span data-i18n-html="hero.award"><strong>#74</strong> Las 100 Mejores Cafeterías de Sudamérica 2025</span>
     </a>
   </div>
   <div class="hero-scroll">
-    <span>Descubre</span>
+    <span data-i18n="hero.scroll">Descubre</span>
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
 </section>
@@ -275,39 +363,39 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   <div class="sec-wrap">
     <div class="somos-grid">
       <div class="somos-text">
-        <div class="sec-eyebrow">Quiénes somos</div>
-        <h2 class="sec-title">Somos <em>más</em><br>que café</h2>
-        <p>SOMOS nació hace 3 años de la mano de Andrés y Ale — dos apasionados del buen café que soñaban con un espacio donde la especialidad, el arte y la comunidad convivieran bajo el mismo techo en Sucre.</p>
-        <blockquote class="somos-quote">"Yo le llamo arte a todo aquello que de alguna manera nos devuelve la vida"</blockquote>
-        <p>Lo que empezó como un sueño se convirtió en un refugio para los creativos y apasionados de nuestra ciudad — donde cada taza de especialidad y cada pieza de pastelería artesanal son una excusa perfecta para quedarse un poco más.</p>
+        <div class="sec-eyebrow" data-i18n="about.eyebrow">Quiénes somos</div>
+        <h2 class="sec-title" data-i18n-html="about.h2">Somos <em>más</em><br>que café</h2>
+        <p data-i18n="about.p1">SOMOS nació hace 3 años de la mano de Andrés y Ale — dos apasionados del buen café que soñaban con un espacio donde la especialidad, el arte y la comunidad convivieran bajo el mismo techo en Sucre.</p>
+        <blockquote class="somos-quote" data-i18n="about.quote">"Yo le llamo arte a todo aquello que de alguna manera nos devuelve la vida"</blockquote>
+        <p data-i18n="about.p2">Lo que empezó como un sueño se convirtió en un refugio para los creativos y apasionados de nuestra ciudad — donde cada taza de especialidad y cada pieza de pastelería artesanal son una excusa perfecta para quedarse un poco más.</p>
         <div class="values">
           <div class="val reveal">
             <div class="val-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.7" stroke-linecap="round"><path d="M17 8h1a4 4 0 010 8h-1M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
             </div>
-            <div class="val-title">Café de Especialidad</div>
-            <div class="val-text">Granos seleccionados con trazabilidad y tueste artesanal</div>
+            <div class="val-title" data-i18n="val.coffee.title">Café de Especialidad</div>
+            <div class="val-text" data-i18n="val.coffee.text">Granos seleccionados con trazabilidad y tueste artesanal</div>
           </div>
           <div class="val reveal d1">
             <div class="val-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.7" stroke-linecap="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
             </div>
-            <div class="val-title">Pastelería Artesanal</div>
-            <div class="val-text">Elaborada cada día con ingredientes de primera</div>
+            <div class="val-title" data-i18n="val.pastry.title">Pastelería Artesanal</div>
+            <div class="val-text" data-i18n="val.pastry.text">Elaborada cada día con ingredientes de primera</div>
           </div>
           <div class="val reveal d2">
             <div class="val-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.7" stroke-linecap="round"><circle cx="13.5" cy="6.5" r=".5" fill="var(--gold)"/><circle cx="17.5" cy="10.5" r=".5" fill="var(--gold)"/><circle cx="8.5" cy="7.5" r=".5" fill="var(--gold)"/><circle cx="6.5" cy="12.5" r=".5" fill="var(--gold)"/><path d="M12 2C6.5 2 2 6.5 2 12c0 5.5 4.5 10 10 10 .926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125 0-.955.754-1.688 1.688-1.688H16c3.022 0 5.5-2.478 5.5-5.5C21.5 6.22 17.239 2 12 2z"/></svg>
             </div>
-            <div class="val-title">Arte &amp; Cultura</div>
-            <div class="val-text">Espacio abierto para creativos y artistas locales</div>
+            <div class="val-title" data-i18n="val.art.title">Arte &amp; Cultura</div>
+            <div class="val-text" data-i18n="val.art.text">Espacio abierto para creativos y artistas locales</div>
           </div>
           <div class="val reveal d3">
             <div class="val-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.7" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
             </div>
-            <div class="val-title">Comunidad</div>
-            <div class="val-text">Un lugar donde nuestra tribu se encuentra y crece</div>
+            <div class="val-title" data-i18n="val.community.title">Comunidad</div>
+            <div class="val-text" data-i18n="val.community.text">Un lugar donde nuestra tribu se encuentra y crece</div>
           </div>
         </div>
 
@@ -317,9 +405,9 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"><path d="M8 21h8M12 17v4M17 5V3H7v2M12 17c-3.87 0-7-3.13-7-7h14c0 3.87-3.13 7-7 7z"/><path d="M5 5H2v5c0 1.66 1.34 3 3 3M19 5h3v5c0 1.66-1.34 3-3 3"/></svg>
           </div>
           <div>
-            <div class="ach-label">Top 100 Coffee Shops South America · 2025</div>
-            <div class="ach-title">Puesto #74 en Sudamérica</div>
-            <div class="ach-text">SOMOS figura en el ranking de las 100 mejores cafeterías de Sudamérica. Un reconocimiento a cada taza, cada croissant y cada persona que forma nuestra tribu.</div>
+            <div class="ach-label" data-i18n="ach.label">Top 100 Coffee Shops South America · 2025</div>
+            <div class="ach-title" data-i18n="ach.title">Puesto #74 en Sudamérica</div>
+            <div class="ach-text" data-i18n="ach.text">SOMOS figura en el ranking de las 100 mejores cafeterías de Sudamérica. Un reconocimiento a cada taza, cada croissant y cada persona que forma nuestra tribu.</div>
           </div>
         </div>
       </div>
@@ -329,7 +417,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
         <div class="ig-head">
           <div class="ig-ring">
             <div class="ig-ring-inner">
-              <img src="assets/instagram/profile.jpg" alt="SOMOS specialty coffee" onerror="this.parentElement.style.background='#2a2a2a'">
+              <img src="assets/instagram/profile.jpg" alt="SOMOS specialty coffee" loading="lazy" onerror="this.parentElement.style.background='#2a2a2a'">
             </div>
           </div>
           <div>
@@ -340,32 +428,32 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
               </span>
             </div>
             <div class="ig-handle">@somos_specialty_coffee</div>
-            <div class="ig-cat">Cafetería · Specialty Coffee</div>
+            <div class="ig-cat" data-i18n="ig.cat">Cafetería · Specialty Coffee</div>
           </div>
         </div>
         <div class="ig-stats">
           <div class="ig-stat"><div class="ig-stat-n">32</div><div class="ig-stat-l">Posts</div></div>
-          <div class="ig-stat"><div class="ig-stat-n">1.765</div><div class="ig-stat-l">Seguidores</div></div>
-          <div class="ig-stat"><div class="ig-stat-n">129</div><div class="ig-stat-l">Seguidos</div></div>
+          <div class="ig-stat"><div class="ig-stat-n">1.765</div><div class="ig-stat-l" data-i18n="ig.followers">Seguidores</div></div>
+          <div class="ig-stat"><div class="ig-stat-n">129</div><div class="ig-stat-l" data-i18n="ig.following">Seguidos</div></div>
         </div>
         <p class="ig-bio-text">#74 · 100 Mejores Cafeterías de Sudamérica 2025</p>
         <div class="ig-grid">
-          <img src="assets/instagram/post-2.jpg" alt="" onerror="this.style.background='#222'">
-          <img src="assets/instagram/post-3.jpg" alt="" onerror="this.style.background='#222'">
-          <img src="assets/instagram/post-4.jpg" alt="" onerror="this.style.background='#222'">
-          <img src="assets/instagram/post-6.jpg" alt="" onerror="this.style.background='#222'">
-          <img src="assets/instagram/post-8.jpg" alt="" onerror="this.style.background='#222'">
-          <img src="assets/instagram/post-10.jpg" alt="" onerror="this.style.background='#222'">
+          <img src="assets/instagram/post-2.jpg" alt="SOMOS specialty coffee" loading="lazy" onerror="this.style.background='#222'">
+          <img src="assets/instagram/post-3.jpg" alt="SOMOS specialty coffee" loading="lazy" onerror="this.style.background='#222'">
+          <img src="assets/instagram/post-4.jpg" alt="SOMOS specialty coffee" loading="lazy" onerror="this.style.background='#222'">
+          <img src="assets/instagram/post-6.jpg" alt="SOMOS specialty coffee" loading="lazy" onerror="this.style.background='#222'">
+          <img src="assets/instagram/post-8.jpg" alt="SOMOS specialty coffee" loading="lazy" onerror="this.style.background='#222'">
+          <img src="assets/instagram/post-10.jpg" alt="SOMOS specialty coffee" loading="lazy" onerror="this.style.background='#222'">
         </div>
-        <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="ig-btn">Seguir en Instagram</a>
+        <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="ig-btn" data-i18n="ig.btn">Seguir en Instagram</a>
       </div>
     </div>
 
     <!-- VIDEO ANDRES Y ALE -->
     <div class="video-section reveal">
       <div style="text-align:center">
-        <div class="sec-eyebrow" style="justify-content:center">Conócenos de cerca</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2.1rem);font-weight:700;margin-top:8px">Andrés y Ale te <em style="font-style:italic;color:var(--gold)">cuentan</em> nuestra historia</h3>
+        <div class="sec-eyebrow" style="justify-content:center" data-i18n="video.eyebrow">Conócenos de cerca</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2.1rem);font-weight:700;margin-top:8px" data-i18n-html="video.h3">Andrés y Ale te <em style="font-style:italic;color:var(--gold)">cuentan</em> nuestra historia</h3>
       </div>
       <div class="video-wrapper">
         <iframe
@@ -375,6 +463,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
           scrolling="no"
           allowtransparency="true"
           allowfullscreen
+          loading="lazy"
         ></iframe>
         <div class="video-caption">@somos_specialty_coffee · Sucre, Bolivia</div>
       </div>
@@ -385,16 +474,16 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
 <!-- ── EL CAFÉ ── -->
 <section id="cafe">
   <div class="sec-wrap">
-    <div class="sec-eyebrow">Lo que nos apasiona</div>
-    <h2 class="sec-title">El <em>café</em> de especialidad</h2>
+    <div class="sec-eyebrow" data-i18n="coffee.eyebrow">Lo que nos apasiona</div>
+    <h2 class="sec-title" data-i18n-html="coffee.h2">El <em>café</em> de especialidad</h2>
     <div class="spec-grid">
       <div class="spec-img reveal">
-        <img src="assets/instagram/post-6.jpg" alt="Café de especialidad" onerror="this.src='assets/instagram/post-9.jpg'">
+        <img src="assets/instagram/post-6.jpg" alt="Café de especialidad SOMOS Sucre" loading="lazy" onerror="this.src='assets/instagram/post-9.jpg'">
       </div>
       <div class="spec-content reveal d2">
-        <h3>Cada taza,<br>una <em>historia</em></h3>
-        <p>Servimos exclusivamente café de especialidad — preparado con cuidado y dedicación para que en cada sorbo descubras los sabores que solo un buen café puede ofrecer.</p>
-        <p>Desde el espresso clásico hasta métodos de filtro, cada preparación es cuidada al detalle para que en cada sorbo descubras algo nuevo.</p>
+        <h3 data-i18n-html="coffee.h3">Cada taza,<br>una <em>historia</em></h3>
+        <p data-i18n="coffee.p1">Servimos exclusivamente café de especialidad — preparado con cuidado y dedicación para que en cada sorbo descubras los sabores que solo un buen café puede ofrecer.</p>
+        <p data-i18n="coffee.p2">Desde el espresso clásico hasta métodos de filtro, cada preparación es cuidada al detalle para que en cada sorbo descubras algo nuevo.</p>
         <div class="tags">
           <span class="tag star">Americano</span>
           <span class="tag">Cappuccino</span>
@@ -412,16 +501,16 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
 <!-- ── PASTELERÍA ── -->
 <section id="pasteleria" style="background:var(--dark)">
   <div class="sec-wrap">
-    <div class="sec-eyebrow">Nuestra especialidad</div>
-    <h2 class="sec-title">La <em>pastelería</em></h2>
+    <div class="sec-eyebrow" data-i18n="pastry.eyebrow">Nuestra especialidad</div>
+    <h2 class="sec-title" data-i18n-html="pastry.h2">La <em>pastelería</em></h2>
     <div class="spec-grid rev">
       <div class="spec-img reveal">
-        <img src="assets/instagram/pastry-feature.jpg" alt="Pastelería SOMOS" onerror="this.src='assets/instagram/post-4.jpg'">
+        <img src="assets/instagram/pastry-feature.jpg" alt="Pastelería artesanal SOMOS Sucre" loading="lazy" onerror="this.src='assets/instagram/post-4.jpg'">
       </div>
       <div class="spec-content reveal d2">
-        <h3>Arte que<br>se <em>saborea</em></h3>
-        <p>La pastelería es nuestra seña de identidad. Cada pieza sale del horno con la misma dedicación que ponemos en el café: ingredientes de calidad, recetas cuidadas y ese toque que hace que quieras repetir.</p>
-        <p>Nuestra carta cambia con las temporadas — ven y descubre qué hay hoy en vitrina. Te aseguramos que no te irás con las manos vacías.</p>
+        <h3 data-i18n-html="pastry.h3">Arte que<br>se <em>saborea</em></h3>
+        <p data-i18n="pastry.p1">La pastelería es nuestra seña de identidad. Cada pieza sale del horno con la misma dedicación que ponemos en el café: ingredientes de calidad, recetas cuidadas y ese toque que hace que quieras repetir.</p>
+        <p data-i18n="pastry.p2">Nuestra carta cambia con las temporadas — ven y descubre qué hay hoy en vitrina. Te aseguramos que no te irás con las manos vacías.</p>
         <div class="tags">
           <span class="tag star">Croissants</span>
           <span class="tag">Pain au Chocolat</span>
@@ -430,7 +519,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
         </div>
         <div style="margin-top:30px">
           <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="btn-white">
-            Ver en Instagram
+            <span data-i18n="pastry.btn">Ver en Instagram</span>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -442,20 +531,20 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
 <!-- ── GALERÍA ── -->
 <section id="galeria">
   <div class="sec-wrap">
-    <div class="sec-eyebrow">Instagram</div>
-    <h2 class="sec-title">Nuestra <em>galería</em></h2>
-    <p style="color:var(--gray);font-size:.93rem;margin-top:10px">Un vistazo a lo que nos inspira cada día.</p>
+    <div class="sec-eyebrow" data-i18n="gallery.eyebrow">Instagram</div>
+    <h2 class="sec-title" data-i18n-html="gallery.h2">Nuestra <em>galería</em></h2>
+    <p style="color:var(--gray);font-size:.93rem;margin-top:10px" data-i18n="gallery.p">Un vistazo a lo que nos inspira cada día.</p>
     <div class="gal-cols">
-      <div class="gal-item reveal"><img src="assets/instagram/post-4.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
-      <div class="gal-item reveal d1"><img src="assets/instagram/post-2.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
-      <div class="gal-item reveal d2"><img src="assets/instagram/post-6.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
-      <div class="gal-item reveal"><img src="assets/instagram/post-8.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
-      <div class="gal-item reveal d1"><img src="assets/instagram/post-10.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
-      <div class="gal-item reveal d2"><img src="assets/instagram/post-3.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
-      <div class="gal-item reveal"><img src="assets/instagram/post-5.jpg" alt=""><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal"><img src="assets/instagram/post-4.jpg" alt="Pastelería artesanal SOMOS Specialty Coffee Sucre" loading="lazy"><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal d1"><img src="assets/instagram/post-2.jpg" alt="Interior cafetería SOMOS Sucre Bolivia" loading="lazy"><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal d2"><img src="assets/instagram/post-6.jpg" alt="Café de especialidad SOMOS Sucre" loading="lazy"><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal"><img src="assets/instagram/post-8.jpg" alt="Preparación café de especialidad SOMOS" loading="lazy"><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal d1"><img src="assets/instagram/post-10.jpg" alt="Espacio cafetería SOMOS Specialty Coffee Sucre" loading="lazy"><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal d2"><img src="assets/instagram/post-3.jpg" alt="SOMOS Specialty Coffee Km 7 Sucre Bolivia" loading="lazy"><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
+      <div class="gal-item reveal"><img src="assets/instagram/post-5.jpg" alt="Café y pastelería artesanal SOMOS Sucre" loading="lazy"><div class="gal-overlay"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg></div></div>
     </div>
     <div style="text-align:center;margin-top:40px">
-      <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="btn-ghost">Ver más en Instagram</a>
+      <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="btn-ghost" data-i18n="gallery.btn">Ver más en Instagram</a>
     </div>
   </div>
 </section>
@@ -463,12 +552,12 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
 <!-- ── MÉTRICAS ── -->
 <section id="metricas">
   <div class="sec-wrap" style="text-align:center">
-    <div class="sec-eyebrow" style="justify-content:center">En números</div>
-    <h2 class="sec-title">SOMOS en <em>cifras</em></h2>
+    <div class="sec-eyebrow" style="justify-content:center" data-i18n="metrics.eyebrow">En números</div>
+    <h2 class="sec-title" data-i18n-html="metrics.h2">SOMOS en <em>cifras</em></h2>
     <div class="metrics">
-      <div class="metric reveal"><span class="metric-n" data-target="3" data-suffix="+">0</span><div class="metric-l">Años haciendo café de especialidad</div></div>
-      <div class="metric reveal d1"><span class="metric-n" data-target="1765">0</span><div class="metric-l">Seguidores en Instagram</div></div>
-      <div class="metric highlight reveal d2"><span class="metric-n" data-target="74" data-prefix="#">#0</span><div class="metric-l">Mejores Cafeterías de Sudamérica 2025</div></div>
+      <div class="metric reveal"><span class="metric-n" data-target="3" data-suffix="+">0</span><div class="metric-l" data-i18n="metrics.years">Años haciendo café de especialidad</div></div>
+      <div class="metric reveal d1"><span class="metric-n" data-target="1765">0</span><div class="metric-l" data-i18n="metrics.followers">Seguidores en Instagram</div></div>
+      <div class="metric highlight reveal d2"><span class="metric-n" data-target="74" data-prefix="#">#0</span><div class="metric-l" data-i18n="metrics.ranking">Mejores Cafeterías de Sudamérica 2025</div></div>
     </div>
   </div>
 </section>
@@ -478,16 +567,16 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   <div class="sec-wrap">
     <div class="visit-grid">
       <div>
-        <div class="sec-eyebrow">Encuéntranos</div>
-        <h2 class="sec-title">Ven a <em>visitarnos</em></h2>
-        <p style="color:rgba(255,255,255,.6);line-height:1.8">Nos encantaría verte por aquí. Ven a conocernos, prueba nuestro café y deja que la pastelería hable por sí misma.</p>
+        <div class="sec-eyebrow" data-i18n="visit.eyebrow">Encuéntranos</div>
+        <h2 class="sec-title" data-i18n-html="visit.h2">Ven a <em>visitarnos</em></h2>
+        <p style="color:rgba(255,255,255,.6);line-height:1.8" data-i18n="visit.p">Nos encantaría verte por aquí. Ven a conocernos, prueba nuestro café y deja que la pastelería hable por sí misma.</p>
         <div class="visit-items">
           <div class="visit-item reveal">
             <div class="visit-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div>
-              <div class="visit-label">Dirección</div>
+              <div class="visit-label" data-i18n="visit.address.label">Dirección</div>
               <div class="visit-text">Km 7 #73, Local del Obelisco<br>Sucre, Bolivia</div>
             </div>
           </div>
@@ -496,10 +585,10 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div>
-              <div class="visit-label">Horario</div>
+              <div class="visit-label" data-i18n="visit.hours.label">Horario</div>
               <div class="visit-text">
-                <div class="horario-row"><span class="horario-day">Lun – Vie</span><span class="horario-time">8:00 – 12:30 &nbsp;·&nbsp; 15:30 – 20:30</span></div>
-                <div class="horario-row"><span class="horario-day">Sábado</span><span class="horario-time">16:00 – 20:00</span></div>
+                <div class="horario-row"><span class="horario-day" data-i18n="visit.day.weekday">Lun – Vie</span><span class="horario-time">8:00 – 12:30 &nbsp;·&nbsp; 15:30 – 20:30</span></div>
+                <div class="horario-row"><span class="horario-day" data-i18n="visit.day.saturday">Sábado</span><span class="horario-time">16:00 – 20:00</span></div>
               </div>
             </div>
           </div>
@@ -508,7 +597,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="var(--gold)" stroke="none"/></svg>
             </div>
             <div>
-              <div class="visit-label">Contacto</div>
+              <div class="visit-label" data-i18n="visit.contact.label">Contacto</div>
               <div class="visit-text">
                 <a href="https://wa.me/59177131579" target="_blank" style="color:var(--gold);text-decoration:none">+591 77131579</a><br>
                 <a href="mailto:somos.pasteleriacafeteria@gmail.com" style="color:rgba(255,255,255,.55);font-size:.83rem;text-decoration:none">somos.pasteleriacafeteria@gmail.com</a>
@@ -531,7 +620,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
             <p>Km 7 #73, Obelisco · Sucre, Bolivia</p>
           </div>
           <a href="https://maps.app.goo.gl/qDNyY3dWYanv8FPJ6" target="_blank" class="btn-white" style="font-size:.72rem;padding:9px 18px;white-space:nowrap;flex-shrink:0">
-            Abrir Maps
+            <span data-i18n="visit.maps.btn">Abrir Maps</span>
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
           </a>
         </div>
@@ -545,7 +634,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   <div class="ft-grid">
     <div class="ft-brand">
       <h3>SOMOS <span>specialty coffee</span></h3>
-      <p>Cafetería de especialidad con alma propia. Café de calidad, pastelería artesanal y un espacio de encuentro para nuestra tribu.</p>
+      <p data-i18n="ft.tagline">Cafetería de especialidad con alma propia. Café de especialidad, pastelería artesanal y un espacio de encuentro para nuestra tribu.</p>
       <div class="ft-socials">
         <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="ft-soc" title="Instagram">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -556,16 +645,16 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
       </div>
     </div>
     <div class="ft-col">
-      <h4>Menu</h4>
+      <h4 data-i18n="ft.menu">Menu</h4>
       <ul>
-        <li><a href="#somos">Nosotros</a></li>
-        <li><a href="#cafe">El Café</a></li>
-        <li><a href="#pasteleria">Pastelería</a></li>
-        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#somos" data-i18n="nav.about">Nosotros</a></li>
+        <li><a href="#cafe" data-i18n="nav.coffee">El Café</a></li>
+        <li><a href="#pasteleria" data-i18n="nav.pastry">Pastelería</a></li>
+        <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
       </ul>
     </div>
     <div class="ft-col">
-      <h4>Visítanos</h4>
+      <h4 data-i18n="ft.visit">Visítanos</h4>
       <ul>
         <li><a href="#visita">Calle Km 7 #73</a></li>
         <li><a href="#visita">Local Obelisco</a></li>
@@ -577,23 +666,161 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
     </div>
   </div>
   <div class="ft-bottom">
-    <span>© 2026 SOMOS specialty coffee. Todos los derechos reservados.</span>
-    <span>Hecho con <span style="color:var(--gold)">♥</span> para los amantes del buen café</span>
+    <span data-i18n="ft.copyright">© 2026 SOMOS specialty coffee. Todos los derechos reservados.</span>
+    <span data-i18n-html="ft.love">Hecho con <span style="color:var(--gold)">♥</span> para los amantes del buen café</span>
   </div>
 </footer>
 
+<!-- ── WHATSAPP FLOTANTE ── -->
+<div class="wpp-float">
+  <span class="wpp-tooltip" id="wppTooltip" data-i18n="wpp.tooltip">¡Escríbenos!</span>
+  <a href="https://wa.me/59177131579" target="_blank" class="wpp-btn" aria-label="WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
 <script>
-// Nav scroll
+// ── i18n ──────────────────────────────────────────────────────────────────────
+const translations = {
+  es: {
+    'nav.about':'Nosotros','nav.coffee':'El Café','nav.pastry':'Pastelería','nav.gallery':'Galería','nav.visit':'Visítanos',
+    'hero.eyebrow':'Specialty Coffee & Pastelería',
+    'hero.h1':'Donde el café<br>es un <em>arte</em>',
+    'hero.p':'Una cafetería de especialidad con alma propia. Café de especialidad, pastelería artesanal y un espacio pensado para nuestra tribu.',
+    'hero.btn':'Conócenos',
+    'hero.award':'<strong>#74</strong> Las 100 Mejores Cafeterías de Sudamérica 2025',
+    'hero.scroll':'Descubre',
+    'about.eyebrow':'Quiénes somos',
+    'about.h2':'Somos <em>más</em><br>que café',
+    'about.p1':'SOMOS nació hace 3 años de la mano de Andrés y Ale — dos apasionados del buen café que soñaban con un espacio donde la especialidad, el arte y la comunidad convivieran bajo el mismo techo en Sucre.',
+    'about.quote':'"Yo le llamo arte a todo aquello que de alguna manera nos devuelve la vida"',
+    'about.p2':'Lo que empezó como un sueño se convirtió en un refugio para los creativos y apasionados de nuestra ciudad — donde cada taza de especialidad y cada pieza de pastelería artesanal son una excusa perfecta para quedarse un poco más.',
+    'val.coffee.title':'Café de Especialidad','val.coffee.text':'Granos seleccionados con trazabilidad y tueste artesanal',
+    'val.pastry.title':'Pastelería Artesanal','val.pastry.text':'Elaborada cada día con ingredientes de primera',
+    'val.art.title':'Arte & Cultura','val.art.text':'Espacio abierto para creativos y artistas locales',
+    'val.community.title':'Comunidad','val.community.text':'Un lugar donde nuestra tribu se encuentra y crece',
+    'ach.label':'Top 100 Coffee Shops South America · 2025',
+    'ach.title':'Puesto #74 en Sudamérica',
+    'ach.text':'SOMOS figura en el ranking de las 100 mejores cafeterías de Sudamérica. Un reconocimiento a cada taza, cada croissant y cada persona que forma nuestra tribu.',
+    'ig.cat':'Cafetería · Specialty Coffee','ig.followers':'Seguidores','ig.following':'Seguidos','ig.btn':'Seguir en Instagram',
+    'video.eyebrow':'Conócenos de cerca',
+    'video.h3':'Andrés y Ale te <em style="font-style:italic;color:var(--gold)">cuentan</em> nuestra historia',
+    'coffee.eyebrow':'Lo que nos apasiona',
+    'coffee.h2':'El <em>café</em> de especialidad',
+    'coffee.h3':'Cada taza,<br>una <em>historia</em>',
+    'coffee.p1':'Servimos exclusivamente café de especialidad — preparado con cuidado y dedicación para que en cada sorbo descubras los sabores que solo un buen café puede ofrecer.',
+    'coffee.p2':'Desde el espresso clásico hasta métodos de filtro, cada preparación es cuidada al detalle para que en cada sorbo descubras algo nuevo.',
+    'pastry.eyebrow':'Nuestra especialidad',
+    'pastry.h2':'La <em>pastelería</em>',
+    'pastry.h3':'Arte que<br>se <em>saborea</em>',
+    'pastry.p1':'La pastelería es nuestra seña de identidad. Cada pieza sale del horno con la misma dedicación que ponemos en el café: ingredientes de calidad, recetas cuidadas y ese toque que hace que quieras repetir.',
+    'pastry.p2':'Nuestra carta cambia con las temporadas — ven y descubre qué hay hoy en vitrina. Te aseguramos que no te irás con las manos vacías.',
+    'pastry.btn':'Ver en Instagram',
+    'gallery.eyebrow':'Instagram','gallery.h2':'Nuestra <em>galería</em>','gallery.p':'Un vistazo a lo que nos inspira cada día.','gallery.btn':'Ver más en Instagram',
+    'metrics.eyebrow':'En números','metrics.h2':'SOMOS en <em>cifras</em>',
+    'metrics.years':'Años haciendo café de especialidad','metrics.followers':'Seguidores en Instagram','metrics.ranking':'Mejores Cafeterías de Sudamérica 2025',
+    'visit.eyebrow':'Encuéntranos','visit.h2':'Ven a <em>visitarnos</em>',
+    'visit.p':'Nos encantaría verte por aquí. Ven a conocernos, prueba nuestro café y deja que la pastelería hable por sí misma.',
+    'visit.address.label':'Dirección','visit.hours.label':'Horario','visit.contact.label':'Contacto',
+    'visit.day.weekday':'Lun – Vie','visit.day.saturday':'Sábado','visit.maps.btn':'Abrir Maps',
+    'ft.tagline':'Cafetería de especialidad con alma propia. Café de especialidad, pastelería artesanal y un espacio de encuentro para nuestra tribu.',
+    'ft.menu':'Menu','ft.visit':'Visítanos',
+    'ft.copyright':'© 2026 SOMOS specialty coffee. Todos los derechos reservados.',
+    'ft.love':'Hecho con <span style="color:var(--gold)">♥</span> para los amantes del buen café',
+    'wpp.tooltip':'¡Escríbenos!'
+  },
+  en: {
+    'nav.about':'About','nav.coffee':'Coffee','nav.pastry':'Pastry','nav.gallery':'Gallery','nav.visit':'Visit Us',
+    'hero.eyebrow':'Specialty Coffee & Pastry',
+    'hero.h1':'Where coffee<br>is an <em>art</em>',
+    'hero.p':'A specialty café with its own soul. Specialty coffee, artisan pastry and a space built for our tribe.',
+    'hero.btn':'Meet Us',
+    'hero.award':'<strong>#74</strong> The 100 Best Coffee Shops in South America 2025',
+    'hero.scroll':'Discover',
+    'about.eyebrow':'Who we are',
+    'about.h2':'We are <em>more</em><br>than coffee',
+    'about.p1':'SOMOS was born 3 years ago at the hands of Andrés and Ale — two passionate coffee lovers who dreamed of a space where specialty, art and community could coexist under the same roof in Sucre.',
+    'about.quote':'"I call art everything that somehow gives us life back"',
+    'about.p2':'What started as a dream became a refuge for the creatives and passionate of our city — where every specialty cup and every piece of artisan pastry is a perfect excuse to stay a little longer.',
+    'val.coffee.title':'Specialty Coffee','val.coffee.text':'Selected beans with full traceability and artisan roasting',
+    'val.pastry.title':'Artisan Pastry','val.pastry.text':'Made every day with the finest ingredients',
+    'val.art.title':'Art & Culture','val.art.text':'Open space for local creatives and artists',
+    'val.community.title':'Community','val.community.text':'A place where our tribe meets and grows',
+    'ach.label':'Top 100 Coffee Shops South America · 2025',
+    'ach.title':'Ranked #74 in South America',
+    'ach.text':'SOMOS appears in the ranking of the 100 best coffee shops in South America — a recognition of every cup, every croissant and every person who makes our tribe.',
+    'ig.cat':'Coffee Shop · Specialty Coffee','ig.followers':'Followers','ig.following':'Following','ig.btn':'Follow on Instagram',
+    'video.eyebrow':'Get to know us',
+    'video.h3':'Andrés and Ale <em style="font-style:italic;color:var(--gold)">tell</em> our story',
+    'coffee.eyebrow':'What we\'re passionate about',
+    'coffee.h2':'Specialty <em>coffee</em>',
+    'coffee.h3':'Every cup,<br>a <em>story</em>',
+    'coffee.p1':'We exclusively serve specialty coffee — prepared with care and dedication so that every sip reveals the flavors only great coffee can offer.',
+    'coffee.p2':'From classic espresso to filter methods, every preparation is handled with detail so each sip reveals something new.',
+    'pastry.eyebrow':'Our specialty',
+    'pastry.h2':'The <em>pastry</em>',
+    'pastry.h3':'Art that<br>is <em>savored</em>',
+    'pastry.p1':'Pastry is our hallmark. Every piece comes out of the oven with the same dedication we put into coffee: quality ingredients, carefully crafted recipes and that touch that makes you want to come back.',
+    'pastry.p2':'Our menu changes with the seasons — come and discover what\'s in the display case today. We guarantee you won\'t leave empty-handed.',
+    'pastry.btn':'View on Instagram',
+    'gallery.eyebrow':'Instagram','gallery.h2':'Our <em>gallery</em>','gallery.p':'A glimpse of what inspires us every day.','gallery.btn':'See more on Instagram',
+    'metrics.eyebrow':'By the numbers','metrics.h2':'SOMOS in <em>numbers</em>',
+    'metrics.years':'Years making specialty coffee','metrics.followers':'Instagram followers','metrics.ranking':'Best Coffee Shops in South America 2025',
+    'visit.eyebrow':'Find us','visit.h2':'Come <em>visit us</em>',
+    'visit.p':'We\'d love to see you here. Come meet us, try our coffee and let the pastry speak for itself.',
+    'visit.address.label':'Address','visit.hours.label':'Hours','visit.contact.label':'Contact',
+    'visit.day.weekday':'Mon – Fri','visit.day.saturday':'Saturday','visit.maps.btn':'Open Maps',
+    'ft.tagline':'A specialty café with its own soul. Specialty coffee, artisan pastry and a gathering space for our tribe.',
+    'ft.menu':'Menu','ft.visit':'Visit Us',
+    'ft.copyright':'© 2026 SOMOS specialty coffee. All rights reserved.',
+    'ft.love':'Made with <span style="color:var(--gold)">♥</span> for good coffee lovers',
+    'wpp.tooltip':'Message us!'
+  }
+};
+
+const titleMap = {
+  es: 'SOMOS Specialty Coffee | Cafetería de Especialidad en Sucre, Bolivia',
+  en: 'SOMOS Specialty Coffee | Specialty Café in Sucre, Bolivia'
+};
+const descMap = {
+  es: 'Cafetería de especialidad en Sucre, Bolivia. Café de especialidad preparado con cuidado, pastelería artesanal y un espacio con alma propia. Km 7 #73, Local del Obelisco. Lun–Vie 8:00–20:30.',
+  en: 'Specialty café in Sucre, Bolivia. Carefully crafted specialty coffee, artisan pastry and a space with its own soul. Km 7 #73, Local del Obelisco. Mon–Fri 8:00–20:30.'
+};
+
+function applyLang(lang) {
+  document.getElementById('htmlRoot').lang = lang;
+  document.getElementById('langBtn').textContent = lang === 'es' ? 'EN' : 'ES';
+  document.title = titleMap[lang];
+  document.querySelector('meta[name="description"]').content = descMap[lang];
+  const t = translations[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    if (t[el.dataset.i18n] !== undefined) el.textContent = t[el.dataset.i18n];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    if (t[el.dataset.i18nHtml] !== undefined) el.innerHTML = t[el.dataset.i18nHtml];
+  });
+  localStorage.setItem('somos_lang', lang);
+}
+
+function toggleLang() {
+  const current = localStorage.getItem('somos_lang') || 'es';
+  applyLang(current === 'es' ? 'en' : 'es');
+}
+
+const savedLang = localStorage.getItem('somos_lang') || 'es';
+if (savedLang !== 'es') applyLang(savedLang);
+
+// ── Nav scroll ────────────────────────────────────────────────────────────────
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50));
 
-// Mobile menu
+// ── Mobile menu ───────────────────────────────────────────────────────────────
 function toggleNav() {
   document.getElementById('navlinks').classList.toggle('open');
 }
 document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open')));
 
-// Hero background — try photos in order by quality, fallback to next
+// ── Hero background ───────────────────────────────────────────────────────────
 (function() {
   const photos = [
     'assets/instagram/post-3.jpg',
@@ -615,13 +842,13 @@ document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click'
   tryNext();
 })();
 
-// Reveal on scroll
+// ── Reveal on scroll ──────────────────────────────────────────────────────────
 const ro = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-// Counters
+// ── Counters ──────────────────────────────────────────────────────────────────
 const co = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting || e.target.dataset.done) return;
@@ -642,7 +869,7 @@ const co = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 document.querySelectorAll('.metric-n').forEach(el => co.observe(el));
 
-// Parallax hero bg on scroll
+// ── Parallax ──────────────────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
   const bg = document.getElementById('heroBg');
   if (bg) bg.style.transform = `scale(1.08) translateY(${scrollY * 0.15}px)`;
