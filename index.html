@@ -258,6 +258,20 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   transition:color .2s,letter-spacing .25s
 }
 .mobile-menu a:hover,.mobile-menu a:active{color:var(--gold);letter-spacing:2px}
+.menu-close{
+  position:absolute;top:20px;right:20px;
+  width:42px;height:42px;
+  background:var(--card);border:1px solid var(--border);border-radius:8px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+  cursor:pointer;transition:border-color .2s,background .2s
+}
+.menu-close:hover{border-color:var(--gold);background:rgba(200,169,110,.08)}
+.menu-close span{
+  display:block;width:18px;height:1.5px;background:var(--gold);border-radius:2px;
+  transition:transform .3s ease
+}
+.menu-close span:nth-child(1){transform:translateY(0.75px) rotate(45deg)}
+.menu-close span:nth-child(2){transform:translateY(-0.75px) rotate(-45deg)}
 
 /* ── ANIMATIONS ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
@@ -716,6 +730,9 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
 
 <!-- ── MENÚ MÓVIL (fuera del nav para evitar problemas con position:fixed) ── -->
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="menu-close" onclick="toggleNav()" aria-label="Cerrar menú">
+    <span></span><span></span>
+  </button>
   <ul>
     <li><a href="#somos" data-i18n="nav.about">Nosotros</a></li>
     <li><a href="#cafe" data-i18n="nav.coffee">El Café</a></li>
