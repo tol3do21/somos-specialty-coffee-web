@@ -124,6 +124,7 @@ section{padding:96px 56px}
 /* Video section */
 .video-section{margin-top:80px}
 .video-wrapper{max-width:700px;margin:36px auto 0;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;position:relative}
+.video-wrapper iframe{height:560px}
 .video-placeholder{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:48px}
 .video-play{width:72px;height:72px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
 .video-play:hover{background:rgba(200,169,110,.15)}
@@ -289,6 +290,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   .gal-cols{columns:2}
   .values{grid-template-columns:1fr}
   .spec-img img{height:320px}
+  .video-wrapper iframe{height:380px}
   .metrics{grid-template-columns:1fr}
   .ft-grid{grid-template-columns:1fr;gap:28px}
   .ft-bottom{flex-direction:column;gap:8px;text-align:center}
@@ -502,7 +504,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
         <iframe
           src="https://www.instagram.com/reel/DS6DQcXjM15/embed"
           width="100%"
-          style="border:none;min-height:560px;display:block"
+          style="border:none;display:block;width:100%"
           scrolling="no"
           allowtransparency="true"
           allowfullscreen
