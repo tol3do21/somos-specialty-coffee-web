@@ -60,8 +60,16 @@ nav.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(20px);padding:14
 .nav-right{display:flex;align-items:center;gap:16px}
 .lang-btn{background:none;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.6);font-size:.68rem;letter-spacing:1.5px;padding:6px 11px;border-radius:2px;cursor:pointer;transition:.2s;font-family:'Inter',sans-serif;text-transform:uppercase}
 .lang-btn:hover{border-color:var(--gold);color:var(--gold)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:101}
-.hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:.3s}
+.hamburger{display:none;width:42px;height:42px;background:var(--card);border:1px solid var(--border);border-radius:8px;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;z-index:201;transition:border-color .3s,background .3s;flex-shrink:0}
+.hamburger:hover{border-color:rgba(200,169,110,.5)}
+.hamburger.open{border-color:var(--gold);background:rgba(200,169,110,.08)}
+.hamburger span{display:block;height:1.5px;border-radius:2px;background:var(--white);transform-origin:center;transition:transform .4s cubic-bezier(.23,1,.32,1),opacity .25s,width .3s,background .3s}
+.hamburger span:nth-child(1){width:18px}
+.hamburger span:nth-child(2){width:11px;background:var(--gold)}
+.hamburger span:nth-child(3){width:18px}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);background:var(--gold);width:18px}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);background:var(--gold)}
 
 /* ── HERO FULL-SCREEN ── */
 .hero{height:100vh;min-height:680px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
@@ -238,8 +246,43 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   nav{padding:14px 20px}
   nav.scrolled{padding:10px 20px}
   .nav-links{display:none}
-  .nav-links.open{display:flex;position:fixed;inset:0;background:var(--black);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:100}
-  .nav-links.open a{font-size:1.1rem}
+  .nav-links.open{
+    display:flex;position:fixed;inset:0;
+    background:rgba(10,10,10,.97);backdrop-filter:blur(24px);
+    flex-direction:column;align-items:center;justify-content:center;
+    gap:0;z-index:200;counter-reset:menu-counter;
+    animation:menuIn .4s cubic-bezier(.23,1,.32,1) forwards
+  }
+  @keyframes menuIn{from{opacity:0;transform:translateX(32px)}to{opacity:1;transform:none}}
+  .nav-links.open li{
+    counter-increment:menu-counter;text-align:center;
+    opacity:0;animation:linkIn .45s cubic-bezier(.23,1,.32,1) forwards
+  }
+  .nav-links.open li:nth-child(1){animation-delay:.08s}
+  .nav-links.open li:nth-child(2){animation-delay:.14s}
+  .nav-links.open li:nth-child(3){animation-delay:.20s}
+  .nav-links.open li:nth-child(4){animation-delay:.26s}
+  .nav-links.open li:nth-child(5){animation-delay:.32s}
+  @keyframes linkIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .nav-links.open li::before{
+    content:'0' counter(menu-counter);
+    display:block;font-size:.58rem;letter-spacing:3px;color:var(--gold);
+    margin-bottom:4px;font-weight:500;font-family:'Inter',sans-serif
+  }
+  .nav-links.open a{
+    font-family:'Playfair Display',serif;font-size:clamp(2rem,9vw,2.8rem);
+    font-weight:700;color:rgba(255,255,255,.45);text-decoration:none;
+    letter-spacing:.5px;text-transform:none;display:block;padding:8px 0;
+    transition:color .2s,letter-spacing .3s
+  }
+  .nav-links.open a:hover{color:var(--gold);letter-spacing:2px}
+  .nav-links.open .nav-cta{
+    background:none!important;color:rgba(255,255,255,.45)!important;
+    padding:8px 0!important;border-radius:0!important;font-weight:700!important;
+    font-family:'Playfair Display',serif!important;font-size:clamp(2rem,9vw,2.8rem)!important;
+    letter-spacing:.5px!important
+  }
+  .nav-links.open .nav-cta:hover{background:none!important;color:var(--gold)!important;letter-spacing:2px!important}
   .hamburger{display:flex}
   .hero h1{font-size:clamp(2.4rem,9vw,3.2rem)}
   section{padding:60px 20px}
@@ -817,8 +860,12 @@ window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY
 // ── Mobile menu ───────────────────────────────────────────────────────────────
 function toggleNav() {
   document.getElementById('navlinks').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('open');
 }
-document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open')));
+document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => {
+  document.getElementById('navlinks').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+}));
 
 // ── Hero background ───────────────────────────────────────────────────────────
 (function() {
