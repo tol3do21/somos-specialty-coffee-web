@@ -1011,7 +1011,7 @@ window.addEventListener('scroll', () => {
 <div id="rv-panel">
   <div id="rv-ph">
     <span>Notas (<span id="rv-cnt2">0</span>)</span>
-    <button id="rv-export">Copiar</button>
+    <button id="rv-export">Enviar por email</button>
     <button id="rv-clear">Borrar todo</button>
     <button id="rv-cp">✕</button>
   </div>
@@ -1112,13 +1112,11 @@ window.addEventListener('scroll', () => {
   mt.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();saveNote()}});
   document.getElementById('rv-export').addEventListener('click',()=>{
     if(!notes.length){alert('No hay notas todavía');return}
-    const txt='NOTAS REVISIÓN — SOMOS CAFÉ\n'+'—'.repeat(20)+'\n\n'+
-      notes.map((n,i)=>`${i+1}. [${n.section}] ${n.text}`).join('\n\n')+
-      `\n\n(${notes.length} nota${notes.length>1?'s':''})`;
-    navigator.clipboard.writeText(txt).then(()=>{
-      const b=document.getElementById('rv-export');
-      b.textContent='✓ Copiado';setTimeout(()=>b.textContent='Copiar',2200);
-    }).catch(()=>prompt('Copia este texto:',txt));
+    const subject='Revisión web Somos Café — '+new Date().toLocaleDateString('es-BO');
+    const body='Hola,\n\nTe mando mis notas de revisión de la web:\n\n'+
+      notes.map((n,i)=>`${i+1}. [${n.section}]\n${n.text}`).join('\n\n')+
+      '\n\nSaludos';
+    window.location.href='mailto:tol3do21@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
   });
   document.getElementById('rv-clear').addEventListener('click',()=>{
     if(!notes.length||!confirm('¿Borrar todas las notas?'))return;
