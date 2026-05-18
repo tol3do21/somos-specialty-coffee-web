@@ -224,6 +224,40 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
 .wpp-btn{width:54px;height:54px;background:var(--card);border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;transition:background .2s,color .2s,transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(200,169,110,.2)}
 .wpp-btn:hover{background:var(--gold);color:var(--black);transform:scale(1.1);box-shadow:0 6px 28px rgba(200,169,110,.4)}
 
+/* ── MOBILE MENU OVERLAY ── */
+.mobile-menu{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:300;
+  background:var(--black);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+  counter-reset:menu-counter;
+}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu ul{list-style:none;text-align:center;padding:0;margin:0}
+.mobile-menu li{
+  counter-increment:menu-counter;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .28s ease,transform .28s ease;
+}
+.mobile-menu.open li:nth-child(1){opacity:1;transform:none;transition-delay:.06s}
+.mobile-menu.open li:nth-child(2){opacity:1;transform:none;transition-delay:.11s}
+.mobile-menu.open li:nth-child(3){opacity:1;transform:none;transition-delay:.16s}
+.mobile-menu.open li:nth-child(4){opacity:1;transform:none;transition-delay:.21s}
+.mobile-menu.open li:nth-child(5){opacity:1;transform:none;transition-delay:.26s}
+.mobile-menu li::before{
+  content:'0' counter(menu-counter);
+  display:block;font-size:.58rem;letter-spacing:3px;
+  color:var(--gold);margin-bottom:4px;font-family:'Inter',sans-serif
+}
+.mobile-menu a{
+  font-family:'Playfair Display',serif;font-size:clamp(2rem,10vw,2.8rem);
+  font-weight:700;color:rgba(255,255,255,.45);text-decoration:none;
+  display:block;padding:9px 0;letter-spacing:.5px;text-transform:none;
+  transition:color .2s,letter-spacing .25s
+}
+.mobile-menu a:hover,.mobile-menu a:active{color:var(--gold);letter-spacing:2px}
+
 /* ── ANIMATIONS ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
 .reveal.visible{opacity:1;transform:none}
@@ -247,43 +281,6 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   nav{padding:14px 20px}
   nav.scrolled{padding:10px 20px}
   .nav-links{display:none}
-  .nav-links.open{
-    display:flex;position:fixed;inset:0;
-    background:rgba(10,10,10,.97);backdrop-filter:blur(24px);
-    flex-direction:column;align-items:center;justify-content:center;
-    gap:0;z-index:200;counter-reset:menu-counter;
-    animation:menuIn .4s cubic-bezier(.23,1,.32,1) forwards
-  }
-  @keyframes menuIn{from{opacity:0;transform:translateX(32px)}to{opacity:1;transform:none}}
-  .nav-links.open li{
-    counter-increment:menu-counter;text-align:center;
-    opacity:0;animation:linkIn .45s cubic-bezier(.23,1,.32,1) forwards
-  }
-  .nav-links.open li:nth-child(1){animation-delay:.08s}
-  .nav-links.open li:nth-child(2){animation-delay:.14s}
-  .nav-links.open li:nth-child(3){animation-delay:.20s}
-  .nav-links.open li:nth-child(4){animation-delay:.26s}
-  .nav-links.open li:nth-child(5){animation-delay:.32s}
-  @keyframes linkIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-  .nav-links.open li::before{
-    content:'0' counter(menu-counter);
-    display:block;font-size:.58rem;letter-spacing:3px;color:var(--gold);
-    margin-bottom:4px;font-weight:500;font-family:'Inter',sans-serif
-  }
-  .nav-links.open a{
-    font-family:'Playfair Display',serif;font-size:clamp(2rem,9vw,2.8rem);
-    font-weight:700;color:rgba(255,255,255,.45);text-decoration:none;
-    letter-spacing:.5px;text-transform:none;display:block;padding:8px 0;
-    transition:color .2s,letter-spacing .3s
-  }
-  .nav-links.open a:hover{color:var(--gold);letter-spacing:2px}
-  .nav-links.open .nav-cta{
-    background:none!important;color:rgba(255,255,255,.45)!important;
-    padding:8px 0!important;border-radius:0!important;font-weight:700!important;
-    font-family:'Playfair Display',serif!important;font-size:clamp(2rem,9vw,2.8rem)!important;
-    letter-spacing:.5px!important
-  }
-  .nav-links.open .nav-cta:hover{background:none!important;color:var(--gold)!important;letter-spacing:2px!important}
   .hamburger{display:flex}
   .hero h1{font-size:clamp(2.4rem,9vw,3.2rem)}
   section{padding:60px 20px}
@@ -716,6 +713,17 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   </div>
 </footer>
 
+<!-- ── MENÚ MÓVIL (fuera del nav para evitar problemas con position:fixed) ── -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul>
+    <li><a href="#somos" data-i18n="nav.about">Nosotros</a></li>
+    <li><a href="#cafe" data-i18n="nav.coffee">El Café</a></li>
+    <li><a href="#pasteleria" data-i18n="nav.pastry">Pastelería</a></li>
+    <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
+    <li><a href="#visita" data-i18n="nav.visit">Visítanos</a></li>
+  </ul>
+</div>
+
 <!-- ── WHATSAPP FLOTANTE ── -->
 <div class="wpp-float">
   <span class="wpp-tooltip" id="wppTooltip" data-i18n="wpp.tooltip">¡Escríbenos!</span>
@@ -860,13 +868,21 @@ const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50));
 
 // ── Mobile menu ───────────────────────────────────────────────────────────────
+const mobileMenu = document.getElementById('mobileMenu');
+const ham = document.getElementById('ham');
+
 function toggleNav() {
-  document.getElementById('navlinks').classList.toggle('open');
-  document.getElementById('ham').classList.toggle('open');
+  const isOpen = mobileMenu.classList.toggle('open');
+  ham.classList.toggle('open', isOpen);
+  mobileMenu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
 }
-document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => {
-  document.getElementById('navlinks').classList.remove('open');
-  document.getElementById('ham').classList.remove('open');
+
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  ham.classList.remove('open');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
 }));
 
 // ── Hero background ───────────────────────────────────────────────────────────
