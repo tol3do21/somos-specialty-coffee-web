@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://somosspecialtycoffee.com/sitemap.xml
+Sitemap: https://somoscoffe.com/sitemap.xml
