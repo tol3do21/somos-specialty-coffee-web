@@ -961,6 +961,183 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 </script>
+<style>
+/* ============ MODO REVISIÓN ============ */
+#rv-fab{position:fixed;bottom:94px;right:28px;z-index:9998;background:#c8a96e;color:#1a1008;border:none;padding:11px 16px;font-family:inherit;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;border-radius:2px;box-shadow:0 4px 20px rgba(0,0,0,.4);transition:transform .15s;font-weight:700}
+#rv-fab:hover{transform:translate(-2px,-2px)}
+#rv-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#c8a96e;color:#1a1008;padding:9px 20px;gap:14px;align-items:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;flex-wrap:wrap}
+.review-active #rv-banner{display:flex}
+.review-active #rv-fab{display:none}
+.review-active,.review-active a,.review-active button:not([id^="rv-"]):not(.rv-btn){cursor:crosshair!important}
+#rv-label{flex:1;opacity:.75}
+.rv-btn{background:rgba(0,0,0,.15);color:#1a1008;border:1px solid rgba(0,0,0,.18);padding:5px 12px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border-radius:1px;font-family:inherit;font-weight:700}
+.rv-btn:hover{background:rgba(0,0,0,.28)}
+#rv-panel{position:fixed;right:0;top:38px;bottom:0;width:330px;background:#1a1008;border-left:2px solid #c8a96e;z-index:9998;display:flex;flex-direction:column;transform:translateX(110%);transition:transform .25s ease;box-shadow:-8px 0 32px rgba(0,0,0,.6)}
+#rv-panel.rv-open{transform:translateX(0)}
+#rv-ph{display:flex;align-items:center;padding:12px 14px;border-bottom:1px solid #2e1f0a;gap:8px}
+#rv-ph span{flex:1;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:#f5efe6}
+#rv-ph button{background:transparent;border:1px solid #3a2a14;color:#8a7560;padding:4px 9px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:inherit}
+#rv-ph button:hover{color:#f5efe6;border-color:#5a4030}
+#rv-export{background:#c8a96e!important;color:#1a1008!important;border-color:#c8a96e!important;font-weight:700}
+#rv-export:hover{opacity:.85}
+#rv-notes{flex:1;overflow-y:auto;padding:6px 0}
+.rv-ni{display:flex;gap:10px;align-items:start;padding:12px 14px;border-bottom:1px solid #241508}
+.rv-ni-num{width:22px;height:22px;min-width:22px;background:#c8a96e;color:#1a1008;border-radius:50%;font-size:10px;display:grid;place-items:center;font-weight:700}
+.rv-ni-body{flex:1;min-width:0}
+.rv-ni-sec{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#c8a96e;margin-bottom:4px}
+.rv-ni-text{font-size:13px;line-height:1.5;color:#f5efe6}
+.rv-ni.resolved{opacity:.38}
+.rv-ni.resolved .rv-ni-text{text-decoration:line-through}
+.rv-ni.resolved .rv-ni-num{background:#4a3520}
+.rv-ni-actions{display:flex;gap:4px;margin-top:8px}
+.rv-ni-actions button{background:transparent;border:1px solid #3a2a14;color:#8a7560;padding:3px 9px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:inherit}
+.rv-resolve{color:#c8a96e!important;border-color:#c8a96e!important}
+.rv-resolve:hover{background:#c8a96e!important;color:#1a1008!important}
+.rv-del:hover{color:#f55!important;border-color:#f55!important}
+#rv-admin-badge{display:none;background:#c8a96e;color:#1a1008;font-weight:700;font-size:9px;letter-spacing:.1em;padding:3px 7px;margin-right:4px}
+.is-admin #rv-admin-badge{display:inline}
+.rv-empty{padding:32px 14px;text-align:center;color:#8a7560;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+#rv-hint{padding:10px 14px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#3a2510;border-top:1px solid #241508;text-align:center}
+#rv-modal{position:fixed;z-index:10000;background:#1e1308;border:2px solid #c8a96e;padding:16px;width:280px;display:none;box-shadow:0 8px 32px rgba(0,0,0,.7)}
+#rv-modal.rv-show{display:block}
+#rv-mn{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#c8a96e;margin-bottom:10px}
+#rv-mt{width:100%;background:#120c04;border:1px solid #3a2a14;color:#f5efe6;padding:9px;font-family:inherit;font-size:13px;line-height:1.5;resize:none;height:76px;outline:none}
+#rv-mt:focus{border-color:#c8a96e}
+#rv-ma{display:flex;gap:8px;margin-top:10px;justify-content:flex-end}
+#rv-mc{background:transparent;border:1px solid #3a2a14;color:#8a7560;padding:7px 12px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;font-family:inherit}
+#rv-ms{background:#c8a96e;color:#1a1008;border:none;padding:7px 14px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-weight:700;font-family:inherit}
+.rv-pin{position:absolute;width:24px;height:24px;background:#c8a96e;color:#1a1008;border-radius:50%;font-size:10px;display:grid;place-items:center;transform:translate(-50%,-50%);box-shadow:0 2px 10px rgba(200,169,110,.45),0 0 0 2px #1a1008;z-index:9000;pointer-events:none;font-weight:700}
+.rv-pin.resolved{background:#4a3520;box-shadow:0 2px 8px rgba(74,53,32,.3),0 0 0 2px #1a1008}
+</style>
 
+<!-- MODO REVISIÓN -->
+<div id="rv-banner">
+  <span id="rv-label">MODO REVISIÓN — Haz clic en cualquier parte para añadir una nota · ESC para salir</span>
+  <button class="rv-btn" id="rv-tog">Ver notas (<span id="rv-cnt">0</span>)</button>
+  <button class="rv-btn" id="rv-exit">Salir ✕</button>
+</div>
+<button id="rv-fab">✎ Revisar</button>
+<div id="rv-panel">
+  <div id="rv-ph">
+    <span><span id="rv-admin-badge">Admin</span>Notas (<span id="rv-cnt2">0</span>)</span>
+    <button id="rv-cp">✕</button>
+  </div>
+  <div id="rv-notes"></div>
+  <div id="rv-hint">Ctrl+Shift+R · acceso admin</div>
+</div>
+<div id="rv-modal">
+  <div id="rv-mn">Nota #<span id="rv-mi">1</span> · <span id="rv-msec" style="color:#f5efe6;opacity:.6"></span></div>
+  <textarea id="rv-mt" placeholder="¿Qué cambiarías aquí?"></textarea>
+  <div id="rv-ma">
+    <button id="rv-mc">Cancelar</button>
+    <button id="rv-ms">Guardar</button>
+  </div>
+</div>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+import{getFirestore,collection,addDoc,onSnapshot,deleteDoc,doc,updateDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+const FB={apiKey:"AIzaSyBgw5c8ZUrcXuvFFqrR0s7WO8y6V-nHN0w",authDomain:"revisiones-web.firebaseapp.com",projectId:"revisiones-web",storageBucket:"revisiones-web.firebasestorage.app",messagingSenderId:"675175547724",appId:"1:675175547724:web:52b90b520f24ae038405e9"};
+const COLL='cafe',PIN='1234';
+const SECTIONS={'inicio':'Hero / Inicio','somos':'Quiénes somos','cafe':'Café / Menú','pasteleria':'Pastelería','galeria':'Galería','metricas':'Métricas / Números','visita':'Visítanos / Contacto'};
+const app=initializeApp(FB),db=getFirestore(app);
+let notes=[],pending=null,active=false,isAdmin=false;
+const fab=document.getElementById('rv-fab');
+const panel=document.getElementById('rv-panel');
+const notesList=document.getElementById('rv-notes');
+const modal=document.getElementById('rv-modal');
+const mt=document.getElementById('rv-mt');
+const cnt=document.getElementById('rv-cnt');
+const cnt2=document.getElementById('rv-cnt2');
+
+onSnapshot(collection(db,COLL),snap=>{
+  notes=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(a.timestamp?.seconds||0)-(b.timestamp?.seconds||0));
+  updateCount();
+  if(active)renderPins();
+  if(panel.classList.contains('rv-open'))renderList();
+});
+
+function getSection(cx,cy){
+  let el=document.elementFromPoint(cx,cy);
+  while(el&&el!==document.body){if(el.id&&SECTIONS[el.id])return SECTIONS[el.id];el=el.parentElement}
+  return'General';
+}
+function on(){active=true;document.body.classList.add('review-active');renderPins();updateCount()}
+function off(){active=false;document.body.classList.remove('review-active');panel.classList.remove('rv-open');modal.classList.remove('rv-show');pending=null;document.querySelectorAll('.rv-pin').forEach(p=>p.remove())}
+function renderPins(){
+  document.querySelectorAll('.rv-pin').forEach(p=>p.remove());
+  notes.forEach((n,i)=>{
+    if(n.resolved&&!isAdmin)return;
+    const p=document.createElement('div');
+    p.className='rv-pin'+(n.resolved?' resolved':'');
+    p.textContent=i+1;p.style.left=n.x+'px';p.style.top=n.y+'px';
+    p.title='['+n.section+'] '+n.text;document.body.appendChild(p);
+  });
+}
+function updateCount(){cnt.textContent=notes.filter(n=>!n.resolved).length;cnt2.textContent=notes.length}
+function openModal(px,py,cx,cy){
+  pending={x:px,y:py,section:getSection(cx,cy)};
+  document.getElementById('rv-mi').textContent=notes.length+1;
+  document.getElementById('rv-msec').textContent=pending.section;
+  mt.value='';
+  modal.style.left=Math.min(cx+16,window.innerWidth-296)+'px';
+  modal.style.top=Math.min(cy+16,window.innerHeight-196)+'px';
+  modal.classList.add('rv-show');requestAnimationFrame(()=>mt.focus());
+}
+async function saveNote(){
+  const t=mt.value.trim();if(!t||!pending)return;
+  modal.classList.remove('rv-show');const n=pending;pending=null;
+  await addDoc(collection(db,COLL),{x:n.x,y:n.y,section:n.section,text:t,resolved:false,timestamp:serverTimestamp()});
+}
+function renderList(){
+  const visible=isAdmin?notes:notes.filter(n=>!n.resolved);
+  notesList.innerHTML=visible.length
+    ?visible.map((n,i)=>`<div class="rv-ni${n.resolved?' resolved':''}">
+        <div class="rv-ni-num">${i+1}</div>
+        <div class="rv-ni-body">
+          <div class="rv-ni-sec">${n.section}</div>
+          <div class="rv-ni-text">${n.text.replace(/</g,'&lt;')}</div>
+          ${isAdmin?`<div class="rv-ni-actions">
+            <button class="rv-resolve" data-id="${n.id}" data-res="${n.resolved}">${n.resolved?'↩ Reabrir':'✓ Listo'}</button>
+            <button class="rv-del" data-id="${n.id}">✕ Borrar</button>
+          </div>`:''}
+        </div></div>`).join('')
+    :'<div class="rv-empty">Sin notas'+(isAdmin?'':' pendientes')+'</div>';
+  if(isAdmin){
+    notesList.querySelectorAll('.rv-resolve').forEach(b=>b.addEventListener('click',()=>{
+      updateDoc(doc(db,COLL,b.dataset.id),{resolved:b.dataset.res==='true'?false:true});
+    }));
+    notesList.querySelectorAll('.rv-del').forEach(b=>b.addEventListener('click',()=>{
+      if(confirm('¿Borrar esta nota?'))deleteDoc(doc(db,COLL,b.dataset.id));
+    }));
+  }
+}
+function enterAdmin(){
+  const p=prompt('PIN admin:');
+  if(p===PIN){isAdmin=true;panel.classList.add('is-admin','rv-open');renderPins();renderList();}
+  else if(p!==null)alert('PIN incorrecto');
+}
+fab.addEventListener('click',on);
+document.getElementById('rv-exit').addEventListener('click',off);
+document.getElementById('rv-tog').addEventListener('click',()=>{
+  panel.classList.toggle('rv-open');if(panel.classList.contains('rv-open'))renderList();
+});
+document.getElementById('rv-cp').addEventListener('click',()=>panel.classList.remove('rv-open'));
+document.getElementById('rv-mc').addEventListener('click',()=>{modal.classList.remove('rv-show');pending=null});
+document.getElementById('rv-ms').addEventListener('click',saveNote);
+mt.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();saveNote()}});
+document.addEventListener('click',e=>{
+  if(!active)return;
+  if(e.target.closest('#rv-banner,#rv-panel,#rv-modal,#rv-fab,.rv-pin'))return;
+  openModal(e.pageX,e.pageY,e.clientX,e.clientY);
+});
+document.addEventListener('keydown',e=>{
+  if(e.ctrlKey&&e.shiftKey&&e.key==='R'){e.preventDefault();enterAdmin();}
+  if(e.key==='Escape'){
+    if(modal.classList.contains('rv-show')){modal.classList.remove('rv-show');pending=null}
+    else if(active)off();
+  }
+});
+</script>
 </body>
 </html>
