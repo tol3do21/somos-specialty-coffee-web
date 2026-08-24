@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Fondo negro de la marca -->
+  <rect width="64" height="64" fill="#0a0a0a"/>
+  <!-- Círculo completo blanco (mitad izquierda) -->
+  <circle cx="32" cy="32" r="24" fill="#ffffff"/>
+  <!-- Semicírculo derecho negro (mitad derecha del logo) -->
+  <path d="M32 8 A24 24 0 0 1 32 56 Z" fill="#0a0a0a"/>
+  <!-- Borde del círculo -->
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+</svg>
