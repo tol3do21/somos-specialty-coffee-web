@@ -52,7 +52,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ── DESIGN TOKENS B&W EDITORIAL ────────────────────────────────────────── */
+/* ── DESIGN TOKENS B&W EDITORIAL DE ALTA GAMA ─────────────────────────── */
 :root {
   --canvas: #050505;
   --surface-1: #0a0a0a;
@@ -94,30 +94,6 @@ body {
 ::-webkit-scrollbar-thumb { background: #252525; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-/* ── AMBIENT LIGHTING BACKGROUNDS ──────────────────────────────────────── */
-.ambient-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  pointer-events: none;
-  z-index: 0;
-}
-.glow-hero {
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(200, 169, 110, 0.07) 0%, transparent 70%);
-}
-.glow-somos {
-  top: 30%;
-  right: 5%;
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
-}
-
 /* ── SMART NAVIGATION ─────────────────────────────────────────────────── */
 header {
   position: fixed;
@@ -127,7 +103,7 @@ header {
   padding: 24px 60px;
 }
 header.scrolled {
-  background: rgba(5, 5, 5, 0.92);
+  background: rgba(5, 5, 5, 0.94);
   backdrop-filter: blur(20px);
   padding: 14px 60px;
   border-bottom: 1px solid var(--border);
@@ -147,11 +123,11 @@ header.scrolled {
   color: var(--text-main);
 }
 .brand-logo-icon {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: #050505;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,7 +137,7 @@ header.scrolled {
 .brand-title-wrap { display: flex; flex-direction: column; line-height: 1.05; }
 .brand-title-wrap strong {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -197,7 +173,6 @@ header.scrolled {
 
 .nav-actions { display: flex; align-items: center; gap: 16px; }
 
-/* Live Status Badge */
 .live-pill {
   display: inline-flex;
   align-items: center;
@@ -213,7 +188,6 @@ header.scrolled {
   font-family: var(--font-mono);
   transition: all .25s ease;
 }
-.live-pill:hover { border-color: var(--border-hover); }
 .live-indicator {
   width: 7px;
   height: 7px;
@@ -260,86 +234,99 @@ header.scrolled {
 .hamburger span {
   display: block; width: 18px; height: 1.5px;
   background: var(--text-main);
-  transition: transform .3s, opacity .2s;
 }
 
-/* ── HERO EXPERIENCE ──────────────────────────────────────────────────── */
+/* ── HERO EXPERIENCE: ASYMMETRIC LUXURY EDITORIAL ─────────────────────── */
 .hero {
   min-height: 100vh;
   position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
   overflow: hidden;
-  padding: 120px 24px 80px;
+  padding: 140px 60px 80px;
+  background: radial-gradient(circle at 85% 20%, rgba(200, 169, 110, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 10% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+              var(--canvas);
 }
-.hero-bg {
+.hero-watermark {
   position: absolute;
-  inset: 0;
-  background: url('assets/instagram/post-3.jpg') center/cover no-repeat;
-  transform: scale(1.06);
-  will-change: transform;
-  transition: transform 6s ease;
+  top: 10px;
+  left: 30px;
+  font-family: var(--font-serif);
+  font-size: clamp(6rem, 16vw, 14rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.025);
+  line-height: 0.8;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
 }
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(5,5,5,0.65) 0%, rgba(5,5,5,0.92) 100%);
-}
-.hero-content {
+.hero-grid-layout {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 64px;
+  align-items: center;
   position: relative;
   z-index: 1;
-  max-width: 860px;
-  margin: 0 auto;
 }
-.hero-eyebrow {
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.hero-rank-pill {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 24px;
-  padding: 6px 16px;
+  gap: 10px;
+  padding: 8px 18px;
   border-radius: 100px;
   background: rgba(200, 169, 110, 0.08);
-  border: 1px solid rgba(200, 169, 110, 0.2);
+  border: 1px solid var(--border-gold);
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
 }
-.hero h1 {
+.hero-title-main {
   font-family: var(--font-serif);
-  font-size: clamp(3.2rem, 7.5vw, 6.5rem);
-  line-height: 1.02;
+  font-size: clamp(3.2rem, 5.5vw, 5.5rem);
+  line-height: 0.98;
   font-weight: 700;
   margin-bottom: 24px;
   letter-spacing: -0.5px;
 }
-.hero h1 em {
+.hero-title-main em {
   font-style: italic;
   color: var(--gold);
   font-weight: 400;
+  display: block;
 }
 .hero-desc {
-  font-size: clamp(1rem, 1.8vw, 1.15rem);
-  color: rgba(255, 255, 255, 0.78);
-  line-height: 1.75;
-  max-width: 580px;
-  margin: 0 auto 36px;
+  font-size: clamp(0.98rem, 1.2vw, 1.12rem);
+  color: var(--text-body);
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 36px;
 }
-.hero-actions {
+.hero-cta-group {
   display: flex;
   gap: 16px;
-  justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  align-items: center;
+  margin-bottom: 36px;
 }
 .btn-primary {
   background: var(--text-main);
   color: var(--canvas);
-  padding: 14px 34px;
+  padding: 14px 32px;
   text-decoration: none;
   font-size: 0.8rem;
   font-weight: 600;
@@ -360,7 +347,7 @@ header.scrolled {
 .btn-secondary {
   background: transparent;
   color: var(--text-main);
-  padding: 14px 34px;
+  padding: 14px 32px;
   text-decoration: none;
   font-size: 0.8rem;
   font-weight: 500;
@@ -377,54 +364,88 @@ header.scrolled {
   border-color: var(--text-main);
   transform: translateY(-2px);
 }
-
-.hero-award-badge {
-  display: inline-flex;
+.hero-live-ticker {
+  display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 24px;
-  border-radius: 100px;
-  background: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(12px);
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+.hero-live-ticker strong { color: var(--gold); }
+
+/* Right Column: Visual Frame */
+.hero-visual-frame {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.hero-main-card {
+  width: 100%;
+  max-width: 440px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(200, 169, 110, 0.08);
+  position: relative;
+  transition: transform .5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-main-card:hover { transform: translateY(-6px); }
+.hero-main-card img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.08) brightness(0.95);
+  transition: transform .7s ease;
+}
+.hero-main-card:hover img { transform: scale(1.04); }
+
+.hero-glass-badge-1 {
+  position: absolute;
+  top: 24px; left: -24px;
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--border-gold);
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.72rem;
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  animation: floatBadge 4s ease-in-out infinite;
+}
+.hero-glass-badge-2 {
+  position: absolute;
+  bottom: 24px; right: -20px;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  animation: floatBadge 4.5s ease-in-out infinite reverse;
+}
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.badge-mini-title {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  transition: all .3s;
-}
-.hero-award-badge:hover {
-  border-color: var(--gold);
-  transform: scale(1.02);
-  box-shadow: 0 8px 30px var(--gold-glow);
-}
-.hero-award-badge strong {
   color: var(--gold);
-  font-size: 0.88rem;
+  margin-bottom: 2px;
+}
+.badge-mini-val {
   font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
 }
-
-.hero-stats-bar {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: rgba(10, 10, 10, 0.6);
-  border-top: 1px solid var(--border);
-  backdrop-filter: blur(10px);
-  padding: 14px 24px;
-}
-.stats-bar-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-around;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-}
-.stats-bar-inner span strong { color: var(--text-main); }
 
 /* ── LAYOUT & SECTION BASE ────────────────────────────────────────────── */
 section {
@@ -439,7 +460,6 @@ section {
   z-index: 1;
 }
 .section-header { margin-bottom: 56px; }
-.section-header.center { text-align: center; }
 .section-tag {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -460,10 +480,7 @@ section {
   line-height: 1.12;
   font-weight: 700;
 }
-.section-title em {
-  font-style: italic;
-  color: var(--gold);
-}
+.section-title em { font-style: italic; color: var(--gold); }
 .section-subtitle {
   color: var(--text-muted);
   font-size: 0.96rem;
@@ -471,7 +488,6 @@ section {
   line-height: 1.7;
   margin-top: 12px;
 }
-.section-subtitle.center { margin-left: auto; margin-right: auto; }
 
 /* ── SECTION 02: MANIFIESTO EDITORIAL ──────────────────────────────────── */
 #somos { background: var(--surface-1); }
@@ -1299,10 +1315,16 @@ footer {
 @media (max-width: 1024px) {
   header, header.scrolled { padding: 16px 28px; }
   section { padding: 80px 28px; }
-  .manifesto-grid, .lab-layout, .visit-layout, .award-hero-card {
+  .hero { padding: 120px 28px 60px; }
+  .hero-grid-layout, .manifesto-grid, .lab-layout, .visit-layout, .award-hero-card {
     grid-template-columns: 1fr;
     gap: 48px;
   }
+  .hero-left { text-align: center; align-items: center; }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .hero-cta-group { justify-content: center; }
+  .hero-glass-badge-1 { left: 0; }
+  .hero-glass-badge-2 { right: 0; }
   .pastry-bento { grid-template-columns: repeat(2, 1fr); }
   .photobook-masonry { columns: 2; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -1311,11 +1333,9 @@ footer {
 @media (max-width: 768px) {
   .nav-menu { display: none; }
   .hamburger { display: flex; }
-  .hero-eyebrow { font-size: 0.62rem; padding: 4px 12px; }
-  .hero-desc { font-size: 0.95rem; }
+  .hero-title-main { font-size: clamp(2.6rem, 10vw, 3.8rem); }
   .pastry-bento { grid-template-columns: 1fr; }
   .metrics-strip { grid-template-columns: 1fr; }
-  .hero-stats-bar { display: none; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
   .wpp-floating { bottom: 20px; right: 20px; }
@@ -1326,6 +1346,7 @@ footer {
   .manifest-card { padding: 20px; }
   .lab-details-panel { padding: 20px; }
   .award-hero-card { padding: 32px 20px; }
+  .hero-glass-badge-1, .hero-glass-badge-2 { position: static; margin-top: 10px; width: 100%; text-align: center; }
 }
 </style>
 
@@ -1385,10 +1406,6 @@ footer {
 
 <body>
 
-<!-- ── AMBIENT GLOWS ── -->
-<div class="ambient-glow glow-hero"></div>
-<div class="ambient-glow glow-somos"></div>
-
 <!-- ── HEADER / NAVIGATION ── -->
 <header id="mainHeader">
   <div class="nav-container">
@@ -1442,44 +1459,57 @@ footer {
 
 <main id="main-content">
 
-  <!-- ── 01. HERO EXPERIENCE ── -->
+  <!-- ── 01. HERO ASIMÉTRICO EDITORIAL DE ALTA GAMA ── -->
   <section class="hero" id="inicio">
-    <div class="hero-bg" id="heroBg"></div>
-    <div class="hero-overlay"></div>
+    <div class="hero-watermark">SOMOS</div>
+    <div class="hero-grid-layout">
+      <!-- Columna Izquierda: Identidad, Título y Acciones -->
+      <div class="hero-left">
+        <div class="hero-rank-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--gold)"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <span data-i18n="hero.pill.rank">Rank #74 Sudamérica · 2025</span>
+        </div>
 
-    <div class="hero-content">
-      <div class="hero-eyebrow" data-i18n="hero.eyebrow">
-        ✦ Specialty Coffee &amp; Obrador · Sucre ✦
+        <h1 class="hero-title-main">
+          SOMOS
+          <em>specialty coffee</em>
+        </h1>
+
+        <p class="hero-desc" data-i18n="hero.desc">
+          El santuario del café de especialidad y la pastelería de autor en Sucre, Bolivia. Granos de altura con trazabilidad, obrador propio y un espacio pensado para nuestra tribu.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#cafe" class="btn-primary">
+            <span data-i18n="hero.btn.lab">Catador de Métodos</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#somos" class="btn-secondary" data-i18n="hero.btn.story">
+            Nuestra Historia
+          </a>
+        </div>
+
+        <div class="hero-live-ticker">
+          <span class="live-indicator" id="heroLiveIndicator"></span>
+          <span><strong data-i18n="hero.live.label">Barra en Vivo:</strong> <span id="heroLiveText">Calculando horario...</span></span>
+        </div>
       </div>
-      <h1 data-i18n-html="hero.h1">
-        Donde el café<br>es un <em>arte vivo</em>
-      </h1>
-      <p class="hero-desc" data-i18n="hero.desc">
-        Una cafetería de especialidad con alma propia. Granos seleccionados con trazabilidad, obrador de pastelería artesanal y un espacio de encuentro para nuestra tribu en Sucre.
-      </p>
 
-      <div class="hero-actions">
-        <a href="#somos" class="btn-primary">
-          <span data-i18n="hero.btn.explore">Conócenos</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#cafe" class="btn-secondary" data-i18n="hero.btn.methods">
-          Catador de Métodos
-        </a>
-      </div>
+      <!-- Columna Derecha: Showcase Visual de Autor con Tarjetas Flotantes -->
+      <div class="hero-visual-frame reveal">
+        <div class="hero-main-card">
+          <img src="assets/instagram/post-3.jpg" alt="Café de especialidad SOMOS en Sucre Bolivia" fetchpriority="high">
+        </div>
 
-      <a href="#reconocimiento" class="hero-award-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--gold)"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-        <span data-i18n-html="hero.award.badge"><strong>#74</strong> Las 100 Mejores Cafeterías de Sudamérica 2025</span>
-      </a>
-    </div>
+        <div class="hero-glass-badge-1">
+          <div class="badge-mini-title" data-i18n="badge.1.title">ALTITUD &amp; ORIGEN</div>
+          <div class="badge-mini-val">2.750 m · Sucre</div>
+        </div>
 
-    <div class="hero-stats-bar">
-      <div class="stats-bar-inner">
-        <span><strong data-i18n="stat.alt">Altitud:</strong> 2.750 m.s.n.m.</span>
-        <span><strong data-i18n="stat.origin">Origen:</strong> Lotes Finca Boliviana</span>
-        <span><strong data-i18n="stat.roast">Tueste:</strong> Perfilado en Pequeños Lotes</span>
-        <span><strong data-i18n="stat.city">Ubicación:</strong> Sucre · Obelisco</span>
+        <div class="hero-glass-badge-2">
+          <div class="badge-mini-title" data-i18n="badge.2.title">TOP 100 SUDAMÉRICA</div>
+          <div class="badge-mini-val" style="color:var(--gold)">Puesto #74 Oficial</div>
+        </div>
       </div>
     </div>
   </section>
@@ -2122,6 +2152,7 @@ function updateRealtimeSchedule() {
   const lang = localStorage.getItem('somos_lang') || 'es';
   let isOpen = false;
   let navText = '';
+  let heroTickerText = '';
   let visitText = '';
 
   const isWeekday = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].includes(day);
@@ -2131,40 +2162,52 @@ function updateRealtimeSchedule() {
     if ((totalMin >= 480 && totalMin <= 750) || (totalMin >= 930 && totalMin <= 1230)) {
       isOpen = true;
       navText = lang === 'es' ? 'Abierto Ahora' : 'Open Now';
+      heroTickerText = lang === 'es' ? 'Abierto Ahora · Sucre, GMT-4' : 'Open Now · Sucre, GMT-4';
       visitText = lang === 'es' ? '🟢 Abierto ahora · Te esperamos' : '🟢 Open now · Welcome in';
     } else if (totalMin < 480) {
       navText = lang === 'es' ? 'Abrimos 8:00' : 'Opens 8:00';
+      heroTickerText = lang === 'es' ? 'Cerrado · Abrimos a las 8:00' : 'Closed · Opens at 8:00';
       visitText = lang === 'es' ? '○ Cerrado · Abrimos a las 8:00' : '○ Closed · Opens at 8:00';
     } else if (totalMin > 750 && totalMin < 930) {
       navText = lang === 'es' ? 'Abrimos 15:30' : 'Opens 15:30';
+      heroTickerText = lang === 'es' ? 'Cerrado · Turno tarde a las 15:30' : 'Closed · Afternoon shift at 15:30';
       visitText = lang === 'es' ? '○ Cerrado · Turno tarde a las 15:30' : '○ Closed · Afternoon shift at 15:30';
     } else {
       navText = lang === 'es' ? 'Cerrado' : 'Closed';
+      heroTickerText = lang === 'es' ? 'Cerrado · Abrimos mañana 8:00' : 'Closed · Opens tomorrow 8:00';
       visitText = lang === 'es' ? '○ Cerrado · Abrimos mañana 8:00' : '○ Closed · Opens tomorrow 8:00';
     }
   } else if (isSaturday) {
     if (totalMin >= 960 && totalMin <= 1200) {
       isOpen = true;
       navText = lang === 'es' ? 'Abierto Ahora' : 'Open Now';
+      heroTickerText = lang === 'es' ? 'Abierto Ahora · Hasta las 20:00' : 'Open Now · Until 20:00';
       visitText = lang === 'es' ? '🟢 Abierto ahora · Hasta las 20:00' : '🟢 Open now · Until 20:00';
     } else if (totalMin < 960) {
       navText = lang === 'es' ? 'Abrimos 16:00' : 'Opens 16:00';
+      heroTickerText = lang === 'es' ? 'Cerrado · Sábados abrimos 16:00' : 'Closed · Saturdays open 16:00';
       visitText = lang === 'es' ? '○ Cerrado · Sábados abrimos a las 16:00' : '○ Closed · Saturdays open at 16:00';
     } else {
       navText = lang === 'es' ? 'Cerrado' : 'Closed';
+      heroTickerText = lang === 'es' ? 'Cerrado · Nos vemos el lunes 8:00' : 'Closed · See you Monday 8:00';
       visitText = lang === 'es' ? '○ Cerrado · Nos vemos el lunes 8:00' : '○ Closed · See you Monday 8:00';
     }
   } else {
     navText = lang === 'es' ? 'Cerrado hoy' : 'Closed today';
+    heroTickerText = lang === 'es' ? 'Domingo cerrado · Abrimos lunes 8:00' : 'Sunday closed · Opens Monday 8:00';
     visitText = lang === 'es' ? '○ Domingo cerrado · Abrimos lunes 8:00' : '○ Sunday closed · Opens Monday 8:00';
   }
 
   const dot = document.getElementById('liveIndicator');
+  const heroDot = document.getElementById('heroLiveIndicator');
   const navLabel = document.getElementById('liveStatusNav');
+  const heroTicker = document.getElementById('heroLiveText');
   const visLabel = document.getElementById('visitLiveIndicator');
 
   if (dot) dot.classList.toggle('closed', !isOpen);
+  if (heroDot) heroDot.classList.toggle('closed', !isOpen);
   if (navLabel) navLabel.textContent = navText;
+  if (heroTicker) heroTicker.textContent = heroTickerText;
   if (visLabel) visLabel.textContent = visitText;
 }
 
@@ -2172,13 +2215,13 @@ function updateRealtimeSchedule() {
 const i18nDictionary = {
   es: {
     'nav.about':'Nosotros','nav.coffee':'El Café','nav.pastry':'Pastelería','nav.award':'Ranking #74','nav.gallery':'Galería','nav.visit':'Visítanos',
-    'hero.eyebrow':'✦ Specialty Coffee & Obrador · Sucre ✦',
-    'hero.h1':'Donde el café<br>es un <em>arte vivo</em>',
-    'hero.desc':'Una cafetería de especialidad con alma propia. Granos seleccionados con trazabilidad, obrador de pastelería artesanal y un espacio de encuentro para nuestra tribu en Sucre.',
-    'hero.btn.explore':'Conócenos',
-    'hero.btn.methods':'Catador de Métodos',
-    'hero.award.badge':'<strong>#74</strong> Las 100 Mejores Cafeterías de Sudamérica 2025',
-    'stat.alt':'Altitud:','stat.origin':'Origen:','stat.roast':'Tueste:','stat.city':'Ubicación:',
+    'hero.pill.rank':'Rank #74 Sudamérica · 2025',
+    'hero.desc':'El santuario del café de especialidad y la pastelería de autor en Sucre, Bolivia. Granos de altura con trazabilidad, obrador propio y un espacio pensado para nuestra tribu.',
+    'hero.btn.lab':'Catador de Métodos',
+    'hero.btn.story':'Nuestra Historia',
+    'hero.live.label':'Barra en Vivo:',
+    'badge.1.title':'ALTITUD & ORIGEN',
+    'badge.2.title':'TOP 100 SUDAMÉRICA',
     'manifesto.tag':'01 · Quiénes Somos',
     'manifesto.title':'Somos <em>más</em><br>que café',
     'manifesto.p1':'SOMOS nació de la pasión de Andrés y Ale — dos soñadores que buscaban crear en Sucre un espacio donde el café de especialidad, el oficio artesanal y la calidez humana convivieran bajo el mismo techo.',
@@ -2230,13 +2273,13 @@ const i18nDictionary = {
   },
   en: {
     'nav.about':'About','nav.coffee':'Coffee','nav.pastry':'Pastry','nav.award':'Rank #74','nav.gallery':'Gallery','nav.visit':'Visit Us',
-    'hero.eyebrow':'✦ Specialty Coffee & Bakehouse · Sucre ✦',
-    'hero.h1':'Where coffee<br>is a <em>living art</em>',
-    'hero.desc':'A specialty coffee house with its own soul. Single-origin microlots, artisan french bakehouse and a gathering sanctuary for our tribe in Sucre.',
-    'hero.btn.explore':'Explore',
-    'hero.btn.methods':'Brewing Lab',
-    'hero.award.badge':'<strong>#74</strong> The 100 Best Coffee Shops in South America 2025',
-    'stat.alt':'Altitude:','stat.origin':'Origin:','stat.roast':'Roast:','stat.city':'Location:',
+    'hero.pill.rank':'Rank #74 South America · 2025',
+    'hero.desc':'The sanctuary of specialty coffee and artisan bakehouse in Sucre, Bolivia. Single-origin microlots, in-house kitchen and a soulful space for our tribe.',
+    'hero.btn.lab':'Extraction Lab',
+    'hero.btn.story':'Our Story',
+    'hero.live.label':'Live Bar Status:',
+    'badge.1.title':'ALTITUDE & ORIGIN',
+    'badge.2.title':'TOP 100 SOUTH AMERICA',
     'manifesto.tag':'01 · Who We Are',
     'manifesto.title':'We are <em>more</em><br>than coffee',
     'manifesto.p1':'SOMOS was born from the passion of Andrés & Ale — two visionaries who dreamed of bringing specialty coffee culture, artisan pastry and soulful community together under one roof in Sucre.',
@@ -2324,29 +2367,24 @@ function toggleLang() {
 const savedLanguage = localStorage.getItem('somos_lang') || 'es';
 if (savedLanguage !== 'es') applyLanguage(savedLanguage);
 
-// Iniciar cálculo en tiempo real
 updateRealtimeSchedule();
 setInterval(updateRealtimeSchedule, 60000);
 
-// ── Mobile Nav Toggle ─────────────────────────────────────────────────────────
 function toggleMobileNav() {
   const overlay = document.getElementById('mobileNavOverlay');
   overlay.classList.toggle('open');
 }
 
-// ── Header Scroll Behavior ────────────────────────────────────────────────────
 const headerEl = document.getElementById('mainHeader');
 window.addEventListener('scroll', () => {
   headerEl.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-// ── Reveal on Scroll (Intersection Observer) ──────────────────────────────────
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ── Animated Number Counters ──────────────────────────────────────────────────
 const countObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting || e.target.dataset.done) return;
@@ -2369,13 +2407,6 @@ const countObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 document.querySelectorAll('.metric-digit').forEach(el => countObserver.observe(el));
 
-// ── Parallax Background ───────────────────────────────────────────────────────
-window.addEventListener('scroll', () => {
-  const bg = document.getElementById('heroBg');
-  if (bg) bg.style.transform = `scale(1.06) translateY(${window.scrollY * 0.14}px)`;
-}, { passive: true });
-
-// ── GA4 Custom Event Tracking ─────────────────────────────────────────────────
 function trackEvent(name, params) {
   if (typeof gtag === 'function') gtag('event', name, params);
 }
