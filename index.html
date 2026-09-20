@@ -197,14 +197,22 @@ section{padding:96px 56px}
 .gal-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
 .gal-item:hover .gal-overlay{opacity:1}
 
-/* ── METRICS ── */
-#metricas{text-align:center}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:12px;overflow:hidden;max-width:760px;margin:44px auto 0}
-.metric{background:var(--dark);padding:38px 16px}
-.metric-n{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:var(--gold);line-height:1;display:block}
-.metric-l{font-size:.72rem;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-top:8px}
-.metric.highlight{background:rgba(200,169,110,.07)}
-.metric.highlight .metric-n{font-size:2.2rem}
+/* ── OPINIONES / TESTIMONIOS ── */
+#opiniones{background:var(--black);position:relative}
+.rating-badge{display:inline-flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:100px;padding:9px 22px;margin:28px auto 0;font-size:.82rem}
+.stars{color:var(--gold);letter-spacing:2px;font-size:.9rem}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+.review-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:30px 24px;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .3s,transform .3s}
+.review-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.review-stars{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.review-stars .stars{font-size:.85rem}
+.review-source{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;letter-spacing:1px;text-transform:uppercase;color:var(--lgray)}
+.review-quote{font-size:.92rem;color:rgba(255,255,255,.82);line-height:1.75;font-style:italic;margin-bottom:22px;flex-grow:1}
+.review-author{display:flex;align-items:center;gap:12px;border-top:1px solid var(--border);padding-top:16px}
+.author-avatar{width:38px;height:38px;border-radius:50%;background:rgba(200,169,110,.12);border:1px solid var(--gold);color:var(--gold);font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.author-name{font-size:.88rem;font-weight:600;color:var(--white)}
+.author-meta{font-size:.72rem;color:var(--gray);margin-top:2px}
+.reviews-cta{text-align:center;margin-top:44px}
 
 /* ── VISIT ── */
 #visita{background:var(--dark)}
@@ -307,7 +315,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   .somos-grid,.spec-grid,.visit-grid{grid-template-columns:1fr;gap:48px}
   .spec-grid.rev{direction:ltr}
   .gal-cols{columns:2}
-  .metrics{grid-template-columns:repeat(3,1fr)}
+  .reviews-grid{grid-template-columns:repeat(2,1fr)}
   .ft-grid{grid-template-columns:1fr 1fr;gap:36px}
   .ft-brand{grid-column:1/-1}
   .ig-card{max-width:420px}
@@ -324,7 +332,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   .values{grid-template-columns:1fr}
   .spec-img img{height:320px}
   .video-wrapper iframe{height:380px}
-  .metrics{grid-template-columns:1fr}
+  .reviews-grid{grid-template-columns:1fr}
   .ft-grid{grid-template-columns:1fr;gap:28px}
   .ft-bottom{flex-direction:column;gap:8px;text-align:center}
   .wpp-float{bottom:20px;right:20px}
@@ -402,6 +410,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
     <li><a href="#cafe" data-i18n="nav.coffee">El Café</a></li>
     <li><a href="#pasteleria" data-i18n="nav.pastry">Pastelería</a></li>
     <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
+    <li><a href="#opiniones" data-i18n="nav.reviews">Opiniones</a></li>
     <li><a href="#visita" class="nav-cta" data-i18n="nav.visit">Visítanos</a></li>
   </ul>
   <div class="nav-right">
@@ -423,8 +432,8 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
     <h1 data-i18n-html="hero.h1">Donde el café<br>es un <em>arte</em></h1>
     <p data-i18n="hero.p">Una cafetería de especialidad con alma propia. Café de especialidad, pastelería artesanal y un espacio pensado para nuestra tribu.</p>
     <div class="btn-row">
-      <a href="#somos" class="btn-white">
-        <span data-i18n="hero.btn">Conócenos</span>
+      <a href="#visita" class="btn-white">
+        <span data-i18n="hero.btn">Ven a Visitarnos</span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank" class="btn-ghost">Instagram</a>
@@ -631,15 +640,98 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
   </div>
 </section>
 
-<!-- ── MÉTRICAS ── -->
-<section id="metricas">
-  <div class="sec-wrap" style="text-align:center">
-    <div class="sec-eyebrow" style="justify-content:center" data-i18n="metrics.eyebrow">En números</div>
-    <h2 class="sec-title" data-i18n-html="metrics.h2">SOMOS en <em>cifras</em></h2>
-    <div class="metrics">
-      <div class="metric reveal"><span class="metric-n" data-target="3" data-suffix="+">0</span><div class="metric-l" data-i18n="metrics.years">Años haciendo café de especialidad</div></div>
-      <div class="metric reveal d1"><span class="metric-n" data-target="1765">0</span><div class="metric-l" data-i18n="metrics.followers">Seguidores en Instagram</div></div>
-      <div class="metric highlight reveal d2"><span class="metric-n" data-target="74" data-prefix="#">#0</span><div class="metric-l" data-i18n="metrics.ranking">Mejores Cafeterías de Sudamérica 2025</div></div>
+<!-- ── TESTIMONIOS / OPINIONES ── -->
+<section id="opiniones">
+  <div class="sec-wrap">
+    <div style="text-align:center;max-width:720px;margin:0 auto">
+      <div class="sec-eyebrow" style="justify-content:center" data-i18n="reviews.eyebrow">Opiniones de la Comunidad</div>
+      <h2 class="sec-title" data-i18n-html="reviews.h2">Lo que dice <em>nuestra tribu</em></h2>
+      <p style="color:rgba(255,255,255,.65);font-size:.95rem;line-height:1.7;margin-bottom:24px" data-i18n="reviews.p">Cada taza y cada encuentro cuentan una historia. Esto es lo que comparten quienes nos visitan en Sucre.</p>
+      
+      <div class="rating-badge reveal">
+        <span style="font-weight:700;color:var(--gold);font-size:.95rem">4.8</span>
+        <span class="stars">★★★★★</span>
+        <span style="color:rgba(255,255,255,.6);font-size:.78rem" data-i18n="reviews.badge">Calificación en Google Maps (57+ reseñas)</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <!-- Reseña 1: León Guerra Andrés Ignacio -->
+      <!-- Reseña 1: Leon Guerra Andres Ignacio (Google Maps) -->
+      <div class="review-card reveal">
+        <div>
+          <div class="review-stars">
+            <span class="stars">★★★★★</span>
+            <span class="review-source">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Google Maps
+            </span>
+          </div>
+          <blockquote class="review-quote" data-i18n="reviews.q1">
+            "Desde que entramos la experiencia fue inolvidable. El ambiente es súper elegante con una linda vista hacia nuestra hermosa ciudad de Sucre. La atención formal y delicada. Pero lo que lleva el 100% de la experiencia en SOMOS es su espectacular sabor, calidad, presentación de la comida. Nos vamos muy contentos y lo recomendamos a todos."
+          </blockquote>
+        </div>
+        <div class="review-author">
+          <div class="author-avatar">LG</div>
+          <div>
+            <div class="author-name">Leon Guerra Andres Ignacio</div>
+            <div class="author-meta" data-i18n="reviews.a1">Local Guide · 5 estrellas</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reseña 2: Abigail Flores (Google Maps) -->
+      <div class="review-card reveal d1">
+        <div>
+          <div class="review-stars">
+            <span class="stars">★★★★★</span>
+            <span class="review-source">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Google Maps
+            </span>
+          </div>
+          <blockquote class="review-quote" data-i18n="reviews.q2">
+            "Muy buen ambiente, bebidas exquisitas y una atención muy buena. Tiene opciones para todos los paladares y gustos."
+          </blockquote>
+        </div>
+        <div class="review-author">
+          <div class="author-avatar">AF</div>
+          <div>
+            <div class="author-name">Abigail Flores</div>
+            <div class="author-meta" data-i18n="reviews.a2">Opinión en Google Maps · 5 estrellas</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reseña 3: stefano castiglion (Google Maps) -->
+      <div class="review-card reveal d2">
+        <div>
+          <div class="review-stars">
+            <span class="stars">★★★★★</span>
+            <span class="review-source">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Google Maps
+            </span>
+          </div>
+          <blockquote class="review-quote" data-i18n="reviews.q3">
+            "Un café muy rico, su pain au chocolat es muy rico y fresco, al igual que su sándwich de jamón y queso."
+          </blockquote>
+        </div>
+        <div class="review-author">
+          <div class="author-avatar">SC</div>
+          <div>
+            <div class="author-name">stefano castiglion</div>
+            <div class="author-meta" data-i18n="reviews.a3">Local Guide · 5 estrellas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-cta reveal">
+      <a href="https://maps.app.goo.gl/qDNyY3dWYanv8FPJ6" target="_blank" rel="noopener" class="btn-ghost">
+        <span data-i18n="reviews.btn">Ver opiniones en Google Maps</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -681,7 +773,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
             <div>
               <div class="visit-label" data-i18n="visit.contact.label">Contacto</div>
               <div class="visit-text">
-                <a href="https://wa.me/59177131579" target="_blank" style="color:var(--gold);text-decoration:none">+591 77131579</a><br>
+                <a href="https://wa.me/59177131579?text=Hola%20SOMOS%20Specialty%20Coffee%2C%20quisiera%20hacerles%20una%20consulta" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none">+591 77131579</a><br>
                 <a href="mailto:somos.pasteleriacafeteria@gmail.com" style="color:rgba(255,255,255,.55);font-size:.83rem;text-decoration:none">somos.pasteleriacafeteria@gmail.com</a>
               </div>
             </div>
@@ -735,6 +827,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
         <li><a href="#cafe" data-i18n="nav.coffee">El Café</a></li>
         <li><a href="#pasteleria" data-i18n="nav.pastry">Pastelería</a></li>
         <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
+        <li><a href="#opiniones" data-i18n="nav.reviews">Opiniones</a></li>
       </ul>
     </div>
     <div class="ft-col">
@@ -743,7 +836,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
         <li><a href="#visita">Km 7 #73, Local del Obelisco</a></li>
         <li><a href="https://www.instagram.com/somos_specialty_coffee/" target="_blank">Instagram</a></li>
         <li><a href="https://www.facebook.com/p/Somos-Pasteler%C3%ADa-y-Cafeter%C3%ADa-100090175716587/" target="_blank">Facebook</a></li>
-        <li><a href="https://wa.me/59177131579" target="_blank">WhatsApp</a></li>
+        <li><a href="https://wa.me/59177131579?text=Hola%20SOMOS%20Specialty%20Coffee%2C%20quisiera%20hacerles%20una%20consulta" target="_blank">WhatsApp</a></li>
         <li><a href="mailto:somos.pasteleriacafeteria@gmail.com">Email</a></li>
       </ul>
     </div>
@@ -764,6 +857,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
     <li><a href="#cafe" data-i18n="nav.coffee">El Café</a></li>
     <li><a href="#pasteleria" data-i18n="nav.pastry">Pastelería</a></li>
     <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
+    <li><a href="#opiniones" data-i18n="nav.reviews">Opiniones</a></li>
     <li><a href="#visita" data-i18n="nav.visit">Visítanos</a></li>
   </ul>
 </div>
@@ -771,7 +865,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
 <!-- ── WHATSAPP FLOTANTE ── -->
 <div class="wpp-float">
   <span class="wpp-tooltip" id="wppTooltip" data-i18n="wpp.tooltip">¡Escríbenos!</span>
-  <a href="https://wa.me/59177131579" target="_blank" class="wpp-btn" aria-label="WhatsApp">
+  <a href="https://wa.me/59177131579?text=Hola%20SOMOS%20Specialty%20Coffee%2C%20quisiera%20hacerles%20una%20consulta" target="_blank" rel="noopener" class="wpp-btn" aria-label="WhatsApp">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 </div>
@@ -780,11 +874,11 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:56px 5
 // ── i18n ──────────────────────────────────────────────────────────────────────
 const translations = {
   es: {
-    'nav.about':'Nosotros','nav.coffee':'El Café','nav.pastry':'Pastelería','nav.gallery':'Galería','nav.visit':'Visítanos',
+    'nav.about':'Nosotros','nav.coffee':'El Café','nav.pastry':'Pastelería','nav.gallery':'Galería','nav.reviews':'Opiniones','nav.visit':'Visítanos',
     'hero.eyebrow':'Specialty Coffee & Pastelería',
     'hero.h1':'Donde el café<br>es un <em>arte</em>',
     'hero.p':'Una cafetería de especialidad con alma propia. Café de especialidad, pastelería artesanal y un espacio pensado para nuestra tribu.',
-    'hero.btn':'Conócenos',
+    'hero.btn':'Ven a Visitarnos',
     'hero.award':'<strong>#74</strong> Las 100 Mejores Cafeterías de Sudamérica 2025',
     'hero.scroll':'Descubre',
     'about.eyebrow':'Quiénes somos',
@@ -814,8 +908,16 @@ const translations = {
     'pastry.p2':'Nuestra carta cambia con las temporadas — ven y descubre qué hay hoy en vitrina. Te aseguramos que no te irás con las manos vacías.',
     'pastry.btn':'Ver en Instagram',
     'gallery.eyebrow':'Instagram','gallery.h2':'Nuestra <em>galería</em>','gallery.p':'Un vistazo a lo que nos inspira cada día.','gallery.btn':'Ver más en Instagram',
-    'metrics.eyebrow':'En números','metrics.h2':'SOMOS en <em>cifras</em>',
-    'metrics.years':'Años haciendo café de especialidad','metrics.followers':'Seguidores en Instagram','metrics.ranking':'Mejores Cafeterías de Sudamérica 2025',
+    'reviews.eyebrow':'Opiniones de la Comunidad','reviews.h2':'Lo que dice <em>nuestra tribu</em>',
+    'reviews.p':'Cada taza y cada encuentro cuentan una historia. Esto es lo que comparten quienes nos visitan en Sucre.',
+    'reviews.badge':'Calificación en Google Maps (57+ reseñas)',
+    'reviews.q1':'"Desde que entramos la experiencia fue inolvidable. El ambiente es súper elegante con una linda vista hacia nuestra hermosa ciudad de Sucre. La atención formal y delicada. Pero lo que lleva el 100% de la experiencia en SOMOS es su espectacular sabor, calidad, presentación de la comida. Nos vamos muy contentos y lo recomendamos a todos."',
+    'reviews.a1':'Local Guide · 5 estrellas',
+    'reviews.q2':'"Muy buen ambiente, bebidas exquisitas y una atención muy buena. Tiene opciones para todos los paladares y gustos."',
+    'reviews.a2':'Opinión en Google Maps · 5 estrellas',
+    'reviews.q3':'"Un café muy rico, su pain au chocolat es muy rico y fresco, al igual que su sándwich de jamón y queso."',
+    'reviews.a3':'Local Guide · 5 estrellas',
+    'reviews.btn':'Ver opiniones en Google Maps',
     'visit.eyebrow':'Encuéntranos','visit.h2':'Ven a <em>visitarnos</em>',
     'visit.p':'Nos encantaría verte por aquí. Ven a conocernos, prueba nuestro café y deja que la pastelería hable por sí misma.',
     'visit.address.label':'Dirección','visit.hours.label':'Horario','visit.contact.label':'Contacto',
@@ -827,11 +929,11 @@ const translations = {
     'wpp.tooltip':'¡Escríbenos!'
   },
   en: {
-    'nav.about':'About','nav.coffee':'Coffee','nav.pastry':'Pastry','nav.gallery':'Gallery','nav.visit':'Visit Us',
+    'nav.about':'About','nav.coffee':'Coffee','nav.pastry':'Pastry','nav.gallery':'Gallery','nav.reviews':'Reviews','nav.visit':'Visit Us',
     'hero.eyebrow':'Specialty Coffee & Pastry',
     'hero.h1':'Where coffee<br>is an <em>art</em>',
     'hero.p':'A specialty café with its own soul. Specialty coffee, artisan pastry and a space built for our tribe.',
-    'hero.btn':'Meet Us',
+    'hero.btn':'Come Visit Us',
     'hero.award':'<strong>#74</strong> The 100 Best Coffee Shops in South America 2025',
     'hero.scroll':'Discover',
     'about.eyebrow':'Who we are',
@@ -861,8 +963,16 @@ const translations = {
     'pastry.p2':'Our menu changes with the seasons — come and discover what\'s in the display case today. We guarantee you won\'t leave empty-handed.',
     'pastry.btn':'View on Instagram',
     'gallery.eyebrow':'Instagram','gallery.h2':'Our <em>gallery</em>','gallery.p':'A glimpse of what inspires us every day.','gallery.btn':'See more on Instagram',
-    'metrics.eyebrow':'By the numbers','metrics.h2':'SOMOS in <em>numbers</em>',
-    'metrics.years':'Years making specialty coffee','metrics.followers':'Instagram followers','metrics.ranking':'Best Coffee Shops in South America 2025',
+    'reviews.eyebrow':'Community Reviews','reviews.h2':'What our <em>tribe</em> says',
+    'reviews.p':'Every cup and encounter tells a story. Here is what guests who visit us in Sucre have to say.',
+    'reviews.badge':'Google Maps Rating (57+ reviews)',
+    'reviews.q1':'"From the moment we walked in, the experience was unforgettable. Super elegant atmosphere with a lovely view of Sucre, attentive and delicate service, and above all, spectacular flavor, food presentation and coffee quality. We left delighted and recommend it to everyone."',
+    'reviews.a1':'Local Guide · 5 stars',
+    'reviews.q2':'"Great atmosphere, exquisite drinks and wonderful service. There are great options for all tastes and palates."',
+    'reviews.a2':'Google Maps Review · 5 stars',
+    'reviews.q3':'"Delicious coffee, their pain au chocolat is wonderful and fresh, just like their ham and cheese sandwich."',
+    'reviews.a3':'Local Guide · 5 stars',
+    'reviews.btn':'View reviews on Google Maps',
     'visit.eyebrow':'Find us','visit.h2':'Come <em>visit us</em>',
     'visit.p':'We\'d love to see you here. Come meet us, try our coffee and let the pastry speak for itself.',
     'visit.address.label':'Address','visit.hours.label':'Hours','visit.contact.label':'Contact',
@@ -955,27 +1065,6 @@ const ro = new IntersectionObserver(entries => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-// ── Counters ──────────────────────────────────────────────────────────────────
-const co = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting || e.target.dataset.done) return;
-    e.target.dataset.done = 1;
-    const target = +e.target.dataset.target;
-    const prefix = e.target.dataset.prefix || '';
-    const suffix = e.target.dataset.suffix || '';
-    const dur = 1800, t0 = performance.now();
-    const tick = now => {
-      const p = Math.min((now - t0) / dur, 1);
-      const v = Math.round((1 - Math.pow(1 - p, 3)) * target);
-      e.target.textContent = prefix + (target >= 1000 ? v.toLocaleString('es-ES') : v) + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-      else e.target.textContent = prefix + (target >= 1000 ? target.toLocaleString('es-ES') : target) + suffix;
-    };
-    requestAnimationFrame(tick);
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('.metric-n').forEach(el => co.observe(el));
-
 // ── Parallax ──────────────────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
   const bg = document.getElementById('heroBg');
@@ -1054,7 +1143,7 @@ document.getElementById('langBtn').addEventListener('click', () => {
 // Tracking de secciones vistas (IntersectionObserver)
 const sectionNames = {
   inicio: 'Hero', somos: 'Nosotros', cafe: 'El Cafe',
-  pasteleria: 'Pasteleria', galeria: 'Galeria', metricas: 'Metricas', visita: 'Visitanos'
+  pasteleria: 'Pasteleria', galeria: 'Galeria', opiniones: 'Opiniones', visita: 'Visitanos'
 };
 const sectionObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
